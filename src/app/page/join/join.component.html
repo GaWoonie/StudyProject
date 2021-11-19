@@ -1,0 +1,135 @@
+<!--<p>join works!</p>-->
+<router-outlet></router-outlet>
+<form action="index.html" method="post" class="loginForm" [formGroup]="fgjoin">
+  <p class="title">Join Us!</p>
+  <div class="idForm" >
+    <input type="id" formControlName="fc_id" class="id" placeholder="ID">
+    <input type="button" class="id_check_button" value="중복확인" (click)="check_id($event)">
+  </div>
+  <div class="passForm" >
+    <input type="password" formControlName="fc_pw" class="pw" placeholder="PW"> <!--비밀번호 입력창-->
+  </div>
+  <div class="passForm" >
+    <input type="password" formControlName="fc_verify_pw" class="pw" placeholder="PW_Confirm"> <!--비밀번호 입력창-->
+  </div>
+  <div class="nameForm" >
+    <input type="name" formControlName="fc_name" class="name" placeholder="NickName">
+    <input type="button" class="name_check_button"  value="중복확인" (click)="check_name($event)"><!--이름 입력창-->
+  </div>
+<!--  <div class="birthForm">
+    <input type="birth" class="birth" placeholder="Birth  (EX. 19940203)"> &lt;!&ndash;생년월일 입력창&ndash;&gt;
+  </div>
+  <div class="emailForm">
+    <input type="email" class="email" placeholder="E-Mail"> &lt;!&ndash;이메일 입력창&ndash;&gt;
+  </div>-->
+
+
+  <button type="button" class="btn" (click)="submit_join()">
+   sign up<!--홈화면으로 이동하게 설정-->
+  </button>
+</form>
+<!--
+<section class="section">
+  <h1> Join Us!</h1>
+  <form name="login" action="index.html" method="post">
+    <p class="form">
+      아이디
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <input type="text" name="user_ID" placeholder="아이디 입력" >
+    <input type="button" name="user_IDcheck" value="확인">
+
+   <br> 비밀번호
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <input type="password" name="user_PW1" value="123456"><br>
+    <br>비밀번호 재확인
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <input type="password" name="user_PW2" value="123456">
+    <input type="button" name="user_PWcheck" value="비밀번호 재확인">
+    <br><br>
+    이름<br>  <input type="text" name="user_name" value=""> <br>
+    생년월일<br>
+    <select name="year">
+      <option value="">&#45;&#45; 선택 &#45;&#45;</option>
+      <option value="1989">1995</option>
+      <option value="1990">1996</option>
+      <option value="1991">1997</option>
+      <option value="1992">1998</option>
+      <option value="1993">1999</option>
+      <option value="1994">2000</option>
+      <option value="1995">1995</option>
+      <option value="1996">1996</option>
+      <option value="1997">1997</option>
+      <option value="1998">1998</option>
+      <option value="1999">1999</option>
+      <option value="2000">2000</option>
+    </select>
+    <select name="month">
+      <option value="">&#45;&#45; 선택 &#45;&#45;</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+    <select name="day">
+      <option value="">&#45;&#45; 선택 &#45;&#45;</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+      <option value="24">24</option>
+      <option value="25">25</option>
+      <option value="26">26</option>
+      <option value="27">27</option>
+      <option value="28">28</option>
+      <option value="29">29</option>
+      <option value="30">30</option>
+      <option value="31">31</option>
+    </select>
+    <br><br>
+    성별<br>
+    <label for="man">남자</label>
+    <input type="radio" name="gender" value="m" id="man">
+    <label for="woman">여자</label>
+    <input type="radio" name="gender" value="m" id="woman"> <br><br>
+    이메일<br><input type="email" name="user_email" placeholder="email@gmail.com"><br><br>
+
+     가입 경로<br>
+    검색<input type="checkbox" name="check" value="hobby1">
+    블로그<input type="checkbox" name="check" value="hobby2">
+    카페<input type="checkbox" name="check" value="hobby3">
+    지인 소개<input type="checkbox" name="check" value="hobby4">
+
+    <br><br><br>
+    <input type="submit" name="" value="제출">
+    </p>
+
+  </form>
+</section>
+-->

@@ -1,0 +1,132 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  font-family:sans-serif;
+
+}
+
+.title{
+  text-align: center;
+  color: #0e2375 ;
+  font-size: xxx-large;
+  font-weight: bolder;
+}
+
+.loginForm {
+  position:absolute;
+  width:700px;
+  height:500px;
+  padding: 30px 20px;
+  background-color:#FFFFFF;
+  text-align:center;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border-radius: 15px;
+}
+
+.loginForm h2{
+  text-align: center;
+  margin: 50px;
+}
+
+.idForm{
+  border-bottom: 3px solid #adadad;
+  margin: 30px;
+  padding: 10px 10px;
+}
+
+.passForm{
+  border-bottom: 3px solid #adadad;
+  margin: 30px;
+  padding: 10px 10px;
+}
+
+.nameForm{
+  border-bottom: 3px solid #adadad;
+  margin: 30px;
+  padding: 10px 10px;
+}
+
+
+
+
+.id {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.pw {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.name {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+
+.btn {
+  position:relative;
+  left:40%;
+  transform: translateX(-50%);
+  margin-bottom: 40px;
+  width:80%;
+  height:40px;
+  background: linear-gradient(125deg,#CAF0F8,#48CAE4,#0077B6);
+  background-position: right;
+  background-size: 110%;
+  color:white;
+  font-weight: bolder;
+  border:none;
+  cursor:pointer;
+  transition: 0.4s;
+  display:inline;
+
+}
+
+.btn:hover {
+  background-position: right;
+}
+
+.bottomText {
+  text-align: center;
+}
+
+.id_check_button{
+  width:40%;
+  height:40px;
+  display:inline;
+  border:none;
+  position: relative;
+  left: 200px;
+  bottom: 20px;
+}
+
+.name_check_button{
+  width:40%;
+  height:40px;
+  display:inline;
+  border:none;
+  position: relative;
+  left: 200px;
+  bottom: 20px;
+}
+

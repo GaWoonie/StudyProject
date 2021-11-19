@@ -1,0 +1,126 @@
+
+table.type01 { border-collapse: collapse; text-align: center; line-height: 1.5; margin : 20px 10px; background-color: powderblue; }
+table.type01 th { width: 250px; padding: 10px; font-weight: bold; vertical-align: top; border: 1px solid #ccc;}
+table.type01 td { width: 250px; padding: 10px; vertical-align: top; border: 1px solid #ccc; }
+table.type01 caption { font-size: 35px; color: darkblue; font-weight: bolder;}
+
+
+div.blstyle{
+  box-sizing: border-box;
+  background: cadetblue;
+  padding: 20px;
+}
+
+
+p.liststyle{
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+  margin: 0.5rem;
+  padding: 0;
+  font-size: 30px;
+  font-weight: bolder;
+
+}
+
+div.sortstyle{
+  text-align: center;
+}
+nav {
+  float:right;
+}
+h1 {
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+  margin: 0.5rem;
+  padding: 0;
+}
+
+nav {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+li.icon {
+  flex-basis: 25%;
+}
+
+header {
+  background: cadetblue;
+  padding: 20px;
+}
+
+a {
+  display: block;
+  text-align: center;
+  margin: .25rem;
+  padding: .5rem 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  background: teal;
+}
+
+a:hover {
+  background: yellowgreen;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.body {text-align: -webkit-center}
+
+.search-option {
+  border-bottom: 2px solid #adadad;
+  margin: 30px;
+  padding: 10px 10px;
+  text-align: center;
+}
+
+  .search {
+    width: 40%;
+    border: none;
+    outline: none;
+    color: #636e72;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+  }
+
+  .search-button {
+    font-size: 18px;
+    background-color: cadetblue;
+  }
+
+  .option {
+    width: 150px;
+    padding: 5px;
+    border: 3px solid cadetblue;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-align: center;
+    text-align-last: center;
+    -ms-text-align-last: center;
+    -moz-text-align-last: center;
+  }
+
+
+
+
+

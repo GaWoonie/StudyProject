@@ -1,0 +1,20 @@
+<!--<p>login works!</p>-->
+<router-outlet></router-outlet>
+<form [formGroup]="fglogin" action="index.html" method="post" class="loginForm">
+  <h2>Login</h2>
+  <div class="idForm">
+    <input formControlName="ID" type="text" class="id" placeholder="ID">  <!--아이디 입력창-->
+  </div>
+  <div class="passForm">
+    <input type="password" formControlName="PW" class="pw" placeholder="PW"> <!--비밀번호 입력창-->
+  </div>
+  <button type="button" class="btn" (click)="submit_login()">
+    LOG IN
+
+  </button>
+
+  <div>
+    <p class="bottomText">Don't you have ID? </p>
+    <br> <a class=signup (click)="signup()">sign up</a>
+  </div>
+</form>
