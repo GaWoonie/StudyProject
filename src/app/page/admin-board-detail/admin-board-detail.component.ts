@@ -5,16 +5,12 @@ import {Board} from "../../model/board";
 import {ActivatedRoute, Router} from '@angular/router'
 import {Tile} from "../../model/tile";
 
-
-
-
 @Component({
-  selector: 'app-board-detail',
-  templateUrl: './board-detail.component.html',
-  styleUrls: ['./board-detail.component.scss']
+  selector: 'app-admin-board-detail',
+  templateUrl: './admin-board-detail.component.html',
+  styleUrls: ['./admin-board-detail.component.scss']
 })
-export class BoardDetailComponent implements OnInit {
-
+export class AdminBoardDetailComponent implements OnInit {
   public boardService: BoardService;
   postIdx : number;
   board : Board | undefined;
@@ -23,16 +19,9 @@ export class BoardDetailComponent implements OnInit {
   title : string | undefined;
   writer : string | undefined;
   writeDate : string |undefined;
-
-
-
-
-  constructor(private activatedRoute : ActivatedRoute, private router:Router, boardService:BoardService, ) {
-    this.postIdx = this.activatedRoute.snapshot.params["idx"]
-    this.boardService = boardService;
-  }
-
-
+  constructor(private activatedRoute : ActivatedRoute, private router:Router, boardService:BoardService,) {
+  this.postIdx = this.activatedRoute.snapshot.params["idx"]
+  this.boardService = boardService;}
 
   ngOnInit(): void {
     this.boardService.getBoard(this.postIdx).subscribe(data => {
@@ -46,29 +35,21 @@ export class BoardDetailComponent implements OnInit {
       this.writeDate = data.writeDate;
     });
   }
-
-
   remove(): void{
     this.boardService.deleteBoard(this.postIdx).subscribe(result =>{
       if(result == true) //버튼 눌렀을때 작동하도록 설정
-      console.log("정상출력:" + this.postIdx) //콘솔로 작동확인
+        console.log("정상출력:" + this.postIdx) //콘솔로 작동확인
       alert("게시물이 삭제되었습니다")
       this.gotolist()
     })
     //idx조회를 통해, api 데이터를 delete 요청.
   }
-
-
   gotolist(): void {
-    this.router.navigate(["boardList"])
+    this.router.navigate(["admin/boardList"])
   }
-
   reload(idx: number): void {
-    this.router.navigate(["boardModify/",idx])
+    this.router.navigate(["admin/boardModify/",idx])
     console.log("idx 정보"+idx)
   }
 
-
 }
-
-

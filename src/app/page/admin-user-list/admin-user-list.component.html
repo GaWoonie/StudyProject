@@ -1,0 +1,47 @@
+<p>관리자페이지 "회원리스트"</p>
+<router-outlet></router-outlet>
+<div class="blstyle">
+  <p class="liststyle">Admin_User List</p>
+
+  <nav>
+    <ul>
+      <!--<li><a>&lt;!&ndash; (click)="write()"&ndash;&gt;글쓰기</a></li>-->
+      <li><a (click)="userboard()">User_Board List</a></li>
+      <li><a (click)="adminBoard()">Admin_ Board List</a></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="body">
+  <table class ="type01" id="boardtable">
+    <thead>
+    <tr>
+      <th>NO</th>
+      <th>ID</th>
+      <th>NAME</th>
+      <th colspan="2"> 수정/탈퇴</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>idx입력칸</td>
+      <td> id 입력칸</td>
+      <td> name 입력칸</td>
+      <td>
+        <input type="button" value="수정" (click)="usermodify()">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" value="탈퇴">
+      </td>
+    </tr>
+    <!--<tr *ngFor="let user of userList">
+      <td>{{user.idx}}</td>
+      <td>{{user.id}}</td>
+      <td>{{user.name}}</td>
+      <td><input type="button" value="수정/삭제"></td>
+
+    </tr>-->
+    </tbody>
+  </table>
+</div>
+

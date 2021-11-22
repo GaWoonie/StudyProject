@@ -49,4 +49,39 @@
     <!--postIdx값에 따라, 게시글 수정 페이지로 이동-->
   <button type=button title="삭제" (click)="remove()" >삭제</button>
 </div>
-
+<br>
+<br>
+<br>
+<br>
+<div class="comment">
+  <p> Comment(s)</p>
+  <table class="comment">
+    <tr>
+      <td colspan="2" class="input">
+        <input type="text" placeholder="댓글을 입력하세요." class="write">
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="2" class="submit" ><input type="button" value="등록" ></td>
+    </tr>
+  </table>
+</div>
+<br>
+<br>
+<br>
+<div>
+  <table>
+    <tr style="border-bottom: 1px solid; height: 100px;">
+      <td colspan="2">작성된 댓글 내용 출력칸
+        <br> (덧글 작성자의 경우, 수정/삭제버튼이 있도록 설정)</td>
+    </tr>
+    <tr>
+      <td rowspan="2" style="text-align: right;"><input type="button" value="수정">
+        <input type="button" value="삭제"></td>
+    </tr>
+  </table>
+</div>
+<br>
+<!--<label class="Comment(s)">Comment(s)</label>
+<input id="comment" type="checkbox">
+<nav -->

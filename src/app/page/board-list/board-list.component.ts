@@ -39,6 +39,10 @@ export class BoardListComponent implements OnInit {
   fgHit : FormGroup;
   fc_hit_up : any;
   fc_hit_down : any;
+  /*fgIdx :FormGroup;
+  fc_idx_up : any;
+  fx_idx_down : any;
+*/
 
 
 
@@ -74,11 +78,21 @@ export class BoardListComponent implements OnInit {
     this.fgHit = fb.group({
       order : new FormControl('desc',[Validators.required])
     })
+    //hit별 오름/내림차순 정렬
     this.fgHit.valueChanges.subscribe(data=>{
       this.fc_hit_up = data.order;
       this.fc_hit_down = data.order;
       this.reload();
     })
+  /*  this.fgIdx = fb.group({
+      order : new FormControl('desc',[Validators.required])
+    })
+    //idx별 오름/내림차순 정렬
+    this.fgIdx.valueChanges.subscribe(data=>{
+      this.fc_idx_up = data.order;
+      this.fx_idx_down = data.order;
+    })*/
+
 
   }
 
@@ -97,12 +111,15 @@ export class BoardListComponent implements OnInit {
       search_option: this.fgSearch.value.search_option,
       search_word: this.fgSearch.value.search_word,
       sort_option: 'hit',
-      sorting: this.fgHit.value.order
+      sorting: this.fgHit.value.order,
     };
 
     this.boardService.getList(query).subscribe(data => {
       this.boardList = data.items;
     });
+  }
+  gotoadmin() :void{
+    this.router.navigate(['admin/boardList'])
   }
 
   searchboard(search_option: string, search_word: string): void{

@@ -1,0 +1,39 @@
+<router-outlet></router-outlet>
+<div class="blstyle">
+  <p class="liststyle">Admin_BoardList</p>
+
+  <nav>
+    <ul>
+      <!--<li><a>&lt;!&ndash; (click)="write()"&ndash;&gt;글쓰기</a></li>-->
+      <li><a (click)="userboard()">User_Board List</a></li>
+      <li><a (click)="adminuser()">Admin_User List</a></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="body">
+  <table class ="type01" id="boardtable">
+    <thead>
+    <tr>
+      <th>NO</th>
+      <th>제목</th>
+      <th>글쓴이</th>
+      <th>작성시간</th>
+      <th>조회수</th>
+      <th colspan="2"> 수정/삭제</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of boardList">
+      <td>{{item.idx}}</td>
+      <td>{{item.title}}</td>
+      <td>{{item.writer}}</td>
+      <td>{{item.writeDate}}</td>
+      <td>{{item.hit}}</td>
+      <td><input type="button" value="수정/삭제" (click)="godetail(item.idx, item.hit)"></td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>

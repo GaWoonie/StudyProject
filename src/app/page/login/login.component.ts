@@ -12,11 +12,11 @@ import {error} from "@angular/compiler/src/util";
 })
 export class LoginComponent implements OnInit {
   login = new Login();
-  fglogin : FormGroup;
+  fg_login : FormGroup;
   userService: UserService;
 
   constructor(private fb: FormBuilder, private route:Router, userService:UserService) {
-    this.fglogin = fb.group({
+    this.fg_login = fb.group({
       ID : new FormControl("", [ Validators.required]),
       PW : new FormControl("",[Validators.required]),
     });
@@ -32,22 +32,18 @@ export class LoginComponent implements OnInit {
   }
 
   submit_login() : void{
-    this.login.id = this.fglogin.controls.ID.value;
-    this.login.password = this.fglogin.controls.PW.value;
+    this.login.id = this.fg_login.controls.ID.value;
+    this.login.password = this.fg_login.controls.PW.value;
 
     this.userService.LogIn(this.login).subscribe(data=>{
-      if(data.message == "login_success") {
         this.route.navigate(['/boardList']);
-        alert("Welcome!")
-      }
-      else {
-        alert("로그인 실패!")
-      }
+        alert("Welcome!")},
+
+      error=>{  alert("로그인 실패!")
+
     })
   }
-  loginpage(): void{
-    location.href="http://localhost:4200/boardList"
-  }
+
   signup(): void{
     location.href="http://localhost:4200/login/join"
   }

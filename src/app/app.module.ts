@@ -15,6 +15,12 @@ import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import { environment } from '../environments/environment';
 import { BoardModifyComponent } from './page/board-modify/board-modify.component';
 import { BoardCreateComponent } from './page/board-create/board-create.component';
+import { AdminBoardListComponent } from './page/admin-board-list/admin-board-list.component';
+import { AdminUserListComponent } from './page/admin-user-list/admin-user-list.component';
+import { AdminBoardDetailComponent } from './page/admin-board-detail/admin-board-detail.component';
+import { AdminBoardModifyComponent } from './page/admin-board-modify/admin-board-modify.component';
+import { AdminUserModifyComponent } from './page/admin-user-modify/admin-user-modify.component';
+import {ErrorInterceptor} from "./common/error.interceptor";
 
 /*import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 * */
@@ -31,7 +37,11 @@ import { BoardCreateComponent } from './page/board-create/board-create.component
     JoinComponent,
     BoardModifyComponent,
     BoardCreateComponent,
-
+    AdminBoardListComponent,
+    AdminUserListComponent,
+    AdminBoardDetailComponent,
+    AdminBoardModifyComponent,
+    AdminUserModifyComponent,
 
   ],
   imports: [
@@ -56,7 +66,7 @@ import { BoardCreateComponent } from './page/board-create/board-create.component
 
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
+      useClass: ErrorInterceptor,
       multi: true
     }
 

@@ -1,25 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 import {UserService} from "../../service/user.service";
 import {User} from "../../model/user";
-import {Router} from "@angular/router";
-import {Form, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
-
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-join',
-  templateUrl: './join.component.html',
-  styleUrls: ['./join.component.scss']
+  selector: 'app-admin-user-modify',
+  templateUrl: './admin-user-modify.component.html',
+  styleUrls: ['./admin-user-modify.component.scss']
 })
-export class JoinComponent implements OnInit {
+export class AdminUserModifyComponent implements OnInit {
   userService : UserService;
   user = new User();
-  fg_join : FormGroup;
+  fgModify : FormGroup;
   id_check!: boolean;
   click : boolean = false;
 
-
   constructor(private router:Router, private fb:FormBuilder,userService:UserService,) {
-    this.fg_join = fb.group({
+    this.fgModify = fb.group({
       fc_id: fb.control('', [Validators.required,Validators.minLength(2),
         Validators.maxLength(10)]),
       fc_pw : new FormControl('',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]),
@@ -30,9 +28,9 @@ export class JoinComponent implements OnInit {
 
     this.userService = userService;
 
-   /* this.fgjoin.controls.fc_id.valueChanges.subscribe(data=>{
-      this.id_check= false;
-    });*/
+    /* this.fgjoin.controls.fc_id.valueChanges.subscribe(data=>{
+       this.id_check= false;
+     });*/
   }
 
   //아이디,비번 중복검사 없이 가능하도록 설정
@@ -41,24 +39,24 @@ export class JoinComponent implements OnInit {
   }
 
   submit_join(): void{
-    this.user.id = this.fg_join.controls.fc_id.value;
-    this.user.pw = this.fg_join.controls.fc_pw.value;
-    this.user.name = this.fg_join.controls.fc_name.value;
+    this.user.id = this.fgModify.controls.fc_id.value;
+    this.user.pw = this.fgModify.controls.fc_pw.value;
+    this.user.name = this.fgModify.controls.fc_name.value;
 
 
     this.userService.SignUP(this.user).subscribe(response =>{
 
       console.log(response,"dddd")
 
-        this.router.navigate(['login'])
-        alert("Welcome!!")
+      this.router.navigate(['login'])
+      alert("Welcome!!")
     }, error => {
       alert("다시 입력하세요");
     })
   }
 
   check_id(event : MouseEvent): void{
-    const {fc_id} = this.fg_join.controls;
+    const {fc_id} = this.fgModify.controls;
 
     this.userService.Check_ID(fc_id.value).subscribe(data => {
       console.log(data, "data!")
@@ -73,10 +71,10 @@ export class JoinComponent implements OnInit {
       }
 
     })
-    }
+  }
 
   check_name(event : MouseEvent): void{
-    const {fc_name} = this.fg_join.controls;
+    const {fc_name} = this.fgModify.controls;
     this.userService.Check_Name(fc_name.value).subscribe(response =>{
       console.log(response,"check data!!")
       if (response == 1) {
@@ -89,5 +87,12 @@ export class JoinComponent implements OnInit {
       }
     })
   }
-
+  adminUser() : void{
+    this.router.navigate(['admin/userList'])
+  }
 }
+
+
+
+
+

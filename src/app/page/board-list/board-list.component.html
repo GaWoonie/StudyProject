@@ -4,8 +4,8 @@
 
 <nav>
   <ul>
-    <li><a href="http://localhost:4200">Main</a></li>
     <li><a (click)="write()">글쓰기</a></li>
+    <li><a (click)="gotoadmin()">관리자</a></li>
     <li><a (click)="logout()">로그아웃</a></li>
   </ul>
 </nav>
@@ -26,12 +26,13 @@
 
 
 <div class="sortstyle" [formGroup]="fgHit" >
-  <select name = "조회수" id="boardhit" formControlName="order">
+  <select name = "조회수" id="boardhit" formControlName="order" >
     <option>---정렬기준----</option>
     <option value="asc"> Hit (오름차순) </option>
-    <option value="desc">Hit (내림차순) </option>   <!--여기에 클릭 옵션 입력하여 클릭하면 정렬되도록 설정-->
+    <option value="desc">Hit (내림차순) </option>
+   <!-- <option value="asc"> IDX (오름차순) </option>
+    <option value="desc">IDX (내림차순) </option> --><!--여기에 클릭 옵션 입력하여 클릭하면 정렬되도록 설정-->
   </select>
-  <input type="button" value="검색" >
 </div>
 
 

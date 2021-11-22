@@ -9,3 +9,5 @@ export interface ListQuery {
   sort_option: string;
   sorting: Sort;
 }
+/*export type sort_option = 'hit' | 'idx';*/
+
