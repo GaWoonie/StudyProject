@@ -34,6 +34,10 @@ export class ErrorInterceptor implements HttpInterceptor {
       if (err.status ==403){
         alert("이용 권한이 없습니다.")
       }
+
+      if (err.status ==500){
+        alert("Server Error!")
+      }
       return throwError(err);
     }));
   }
