@@ -18,3 +18,24 @@ export interface ListResponse {
   offset: number;
   items: Board[];
 }
+
+export interface Comments {
+  idxComments : number;
+  id : string;
+  comment : string;
+  depth : number;
+  order : number;
+  parentIdx : number;
+  postidx : number;
+  status : number;
+  created_at : any;
+  updated_at : any;
+  deleted_at : any;
+}
+
+export interface Add_Comment {
+  comment : string;
+  depth : number;
+  parentIdx : number;
+  postidx : number;
+}

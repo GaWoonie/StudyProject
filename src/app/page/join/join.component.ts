@@ -18,7 +18,7 @@ export class JoinComponent implements OnInit {
   click : boolean = false;
 
 
-  constructor(private router:Router, private fb:FormBuilder,userService:UserService,) {
+  constructor(private router:Router, private fb:FormBuilder, userService:UserService,) {
     this.fg_join = fb.group({
       fc_id: fb.control('', [Validators.required,Validators.minLength(2),
         Validators.maxLength(10)]),
@@ -50,7 +50,7 @@ export class JoinComponent implements OnInit {
 
       console.log(response,"dddd")
 
-        this.router.navigate(['login'])
+        this.router.navigate([''])
         alert("Welcome!!")
     }, error => {
       alert("다시 입력하세요");

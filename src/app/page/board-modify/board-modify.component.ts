@@ -20,13 +20,7 @@ export class BoardModifyComponent implements OnInit {
   writer: string | undefined;
   writeDate: string | undefined;
 
-  today = new Date();
-  year = this.today.getFullYear(); // 년도
-  month = this.today.getMonth() + 1;  // 월
-  date = this.today.getDate();  // 날짜
-  hours = this.today.getHours(); // 시
-  minutes = this.today.getMinutes();  // 분
-  seconds = this.today.getSeconds();  // 초
+
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, boardService: BoardService, private fb: FormBuilder)
   {

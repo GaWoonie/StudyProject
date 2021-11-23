@@ -1,4 +1,3 @@
-<p>관리자페이지 "회원리스트"</p>
 <router-outlet></router-outlet>
 <div class="blstyle">
   <p class="liststyle">Admin_User List</p>
@@ -19,28 +18,22 @@
       <th>NO</th>
       <th>ID</th>
       <th>NAME</th>
-      <th colspan="2"> 수정/탈퇴</th>
+      <th colspan="2"> 수정/탈퇴/권한</th>
 
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>idx입력칸</td>
-      <td> id 입력칸</td>
-      <td> name 입력칸</td>
-      <td>
-        <input type="button" value="수정" (click)="usermodify()">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="button" value="탈퇴">
-      </td>
-    </tr>
-    <!--<tr *ngFor="let user of userList">
+    <tr *ngFor="let user of userList">
       <td>{{user.idx}}</td>
       <td>{{user.id}}</td>
       <td>{{user.name}}</td>
-      <td><input type="button" value="수정/삭제"></td>
+      <td>
+        <input type="button" value="수정/탈퇴" (click)="usermodify(user.idx)">
+        &nbsp;
+        <input type="button" value="권한">
+      </td>
 
-    </tr>-->
+    </tr>
     </tbody>
   </table>
 </div>

@@ -73,7 +73,7 @@ export class AdminBoardListComponent implements OnInit {
     const query: ListQuery = {
       search_option: this.fgSearch.value.search_option,
       search_word: this.fgSearch.value.search_word,
-      sort_option: 'hit',
+      sort_option: 'idx',
       sorting: this.fgHit.value.order,
     };
 
@@ -110,6 +110,7 @@ export class AdminBoardListComponent implements OnInit {
   }
 
   userboard() :void{
-    this.router.navigate([''])
+    this.router.navigate(["/boardList"])
   }
+
 }

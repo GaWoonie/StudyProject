@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Router,ActivatedRoute} from "@angular/router";
 import {UserService} from "../../service/user.service";
 import {User} from "../../model/user";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -11,71 +11,67 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class AdminUserModifyComponent implements OnInit {
   userService : UserService;
+  userList : User |undefined;
   user = new User();
-  fgModify : FormGroup;
-  id_check!: boolean;
+  fg_Modify : FormGroup;
+  pw : string |undefined;
+ name : string | undefined;
+  idx : number |undefined;
   click : boolean = false;
-
-  constructor(private router:Router, private fb:FormBuilder,userService:UserService,) {
-    this.fgModify = fb.group({
-      fc_id: fb.control('', [Validators.required,Validators.minLength(2),
-        Validators.maxLength(10)]),
-      fc_pw : new FormControl('',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]),
-      fc_verify_pw : new FormControl('', [Validators.required,Validators.minLength(2),Validators.maxLength(20)]),
-      fc_name : new FormControl('', [Validators.required,Validators.minLength(2)])
-    });
+  Idx :number |undefined;
+  id : string |undefined;
 
 
+  constructor(private router:Router, private fb:FormBuilder,userService:UserService,private activatedRoute: ActivatedRoute) {
+    this.Idx = this.activatedRoute.snapshot.params["idx"]
+    this.fg_Modify = fb.group({
+      pw : new FormControl('',[Validators.required]),
+      name : new FormControl('',[Validators.required]),
+      id : this.id,
+       });
     this.userService = userService;
-
-    /* this.fgjoin.controls.fc_id.valueChanges.subscribe(data=>{
-       this.id_check= false;
-     });*/
   }
 
   //아이디,비번 중복검사 없이 가능하도록 설정
 
   ngOnInit(): void {
-  }
-
-  submit_join(): void{
-    this.user.id = this.fgModify.controls.fc_id.value;
-    this.user.pw = this.fgModify.controls.fc_pw.value;
-    this.user.name = this.fgModify.controls.fc_name.value;
-
-
-    this.userService.SignUP(this.user).subscribe(response =>{
-
-      console.log(response,"dddd")
-
-      this.router.navigate(['login'])
-      alert("Welcome!!")
-    }, error => {
-      alert("다시 입력하세요");
+    // @ts-ignore
+    this.userService.Select_User(this.Idx).subscribe(data=>{
+      this.Idx = data.idx;
+      this.id = data.id;
+      this.pw = data.pw;
+      this.name = data.name;
     })
+
   }
+  //this.modifyform.value.idx = this.postIdx
+  //     // form contorl 의 입력된 { 제목, 내용 } 에 + 게시글의 idx 값도 추가한다.
+  //     this.boardService.modifyBoard(this.modifyform.value).subscribe(data => {
+  //       console.log("정상출력:" + this.modifyform)
+  //       this.reload()
 
-  check_id(event : MouseEvent): void{
-    const {fc_id} = this.fgModify.controls;
-
-    this.userService.Check_ID(fc_id.value).subscribe(data => {
-      console.log(data, "data!")
-      if (data == 1) {
-        alert("중복되어 사용 할 수 없는 ID입니다.")
-      } else {
-        alert("사용 가능 한 ID입니다.")
-        this.click = !this.click;
-        (event.target as HTMLButtonElement).disabled = true;
-
-        //사용 가능할 시, 중복체크 버튼 비활성화
+  submit_modify(): void{
+   /* this.user.id = this.fg_Modify.controls.fc_id.value;
+    this.user.pw = this.fg_Modify.controls.fc_pw.value;
+    this.user.name = this.fg_Modify.controls.fc_name.value;
+*/ this.fg_Modify.value.idx =  this.Idx
+    this.user.name = this.fg_Modify.controls.name.value;
+    this.userService.Modify_User(this.fg_Modify.value).subscribe(data=>{
+      console.log("정상출력:" + this.fg_Modify)
+      this.adminUser()
+    })
+   /* // @ts-ignore
+    this.userService.Modify_User(this.Idx).subscribe(data=>{
+      this.id = data.id;
+      this.pw = data.pw;
+      this.name = data.name;
+    })*/
       }
 
-    })
-  }
 
   check_name(event : MouseEvent): void{
-    const {fc_name} = this.fgModify.controls;
-    this.userService.Check_Name(fc_name.value).subscribe(response =>{
+    const {name} = this.fg_Modify.controls;
+    this.userService.Check_Name(name.value).subscribe(response =>{
       console.log(response,"check data!!")
       if (response == 1) {
         alert("중복되어 사용 할 수 없는 NickName입니다.")
@@ -89,6 +85,21 @@ export class AdminUserModifyComponent implements OnInit {
   }
   adminUser() : void{
     this.router.navigate(['admin/userList'])
+  }
+  adminBoard() : void{
+    this.router.navigate(['admin/boardList'])
+  }
+  userboard() :void{
+    this.router.navigate(["/boardList"])
+  }
+  deleteUser() : void {
+    // @ts-ignore
+    this.userService.Delete_User(this.Idx).subscribe(data=>{
+      alert("회원 정보가 삭제되었습니다.")
+      this.adminUser()
+    })
+
+
   }
 }
 

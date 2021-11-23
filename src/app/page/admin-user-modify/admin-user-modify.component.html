@@ -1,24 +1,51 @@
 <p>관리자 "user 정보 수정"</p>
 <router-outlet></router-outlet>
 
-  <form action="index.html" method="post" class="loginForm" [formGroup]="fgModify">
-    <p class="title">User_Modify</p>
-    <div class="idForm" >
-      <input type="id" formControlName="fc_id" class="id" placeholder="ID">
-      <input type="button" class="id_check_button" value="중복확인" (click)="check_id($event)">
-    </div>
-    <div class="passForm">
-      <input type="password" formControlName="fc_pw" class="pw" placeholder="PW"> <!--비밀번호 입력창-->
-    </div>
-    <div class="passForm" >
-      <input type="password" formControlName="fc_verify_pw" class="pw" placeholder="PW_Confirm"> <!--비밀번호 입력창-->
-    </div>
-    <div class="nameForm" >
-      <input type="name" formControlName="fc_name" class="name" placeholder="NickName">
-      <input type="button" class="name_check_button"  value="중복확인" (click)="check_name($event)"><!--이름 입력창-->
-    </div>
+<div class="blstyle">
+  <p class="liststyle">Admin_User Modify</p>
 
-    <button type="button" class="btn" (click)="adminUser()">
-      완료  <!--버튼 누르면 유저 정보 수정되게 설정-->
-    </button>
-  </form>
+  <nav>
+    <ul>
+      <!--<li><a>&lt;!&ndash; (click)="write()"&ndash;&gt;글쓰기</a></li>-->
+      <li><a (click)="userboard()">User_Board List</a></li>
+      <li><a (click)="adminBoard()">Admin_ Board List</a></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="body" [formGroup]="fg_Modify">
+  <table class ="type01" id="boardtable">
+    <tr>
+      <th> NO </th>
+      <td colspan="2" >{{Idx}} </td>
+    </tr>
+    <tr>
+      <th> ID</th>
+      <!--<td><input type="text" value="id 입력칸"></td>-->
+      <td colspan="2"> {{id}} </td>
+    </tr>
+    <tr>
+      <th> PASSWORD</th>
+      <td colspan="2"><input type="text"  class="pw" formControlName="pw"  value="{{pw}}" > </td>
+    </tr>
+    <tr>
+      <th> NAME</th>
+      <!--<td><input type="text" value="name 입력칸"></td>-->
+      <td><input type="text" class="name" formControlName="name"  value="{{name}}"></td>
+      <td><input type="button" class="name_check_button"  value="중복확인" (click)="check_name($event)"></td>
+    </tr>
+    <!--<tr *ngFor="let user of userList">
+      <td>{{user.idx}}</td>
+      <td>{{user.id}}</td>
+      <td>{{user.name}}</td>
+      <td><input type="button" value="수정/삭제"></td>
+
+    </tr>-->
+  </table>
+  <input type="button" class="complition"  value="수정완료" (click)="submit_modify()">
+  <input type="button" class="complition"  value="취소" (click)="adminUser()">
+  &nbsp;
+  <input type="button" class="out"  value="탈퇴" (click)="deleteUser()" >
+</div>
+
+

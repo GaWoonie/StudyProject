@@ -22,22 +22,24 @@ export class ErrorInterceptor implements HttpInterceptor {
         // 에러코드가 401 (인증 안됨) 처리
         if (err.error.message == 'login_failed') {
           // 로그인 실패인 경우라면 로그인실패 다이얼로그를 띄운다.
-          alert("로그인 인증 x")
+         /* alert("로그인 인증 x")*/
         }
 
         if (err.error.message != 'login_failed') {
           // 로그인 실패가 아니라면, 즉, 인증없이 URL 이동했다면 리다이렉트 처리
-          /*this.redirect()*/
+          this.redirect()
+          alert("로그인 없이 url 이동")
         }
+      }
+      if (err.status ==403){
+        alert("이용 권한이 없습니다.")
       }
       return throwError(err);
     }));
   }
+   public redirect(): void {
+     alert('로그인이 필요한 서비스입니다..');
+     this.router.navigate(['/login']);
+   }
 
-
-  public redirect(): void {
-    alert('로그인이 필요한 서비스입니다..');
-    this.router.navigate(['/login']);
-  }
 }
-

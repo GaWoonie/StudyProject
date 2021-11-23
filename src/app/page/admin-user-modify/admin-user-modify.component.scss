@@ -1,132 +1,100 @@
+table.type01 { border-collapse: collapse; text-align: center; line-height: 1.5; margin : 20px 10px; background-color: #fffcde; height:150px;  }
+table.type01 th { width: 250px; padding: 10px; font-weight: bold; vertical-align: top; border: 1px solid #ccc;}
+table.type01 td { width: 250px; padding: 10px; vertical-align: top; border: 1px solid #ccc; }
 
-*{
-  margin: 0px;
-  padding: 0px;
+
+
+div.blstyle{
+  box-sizing: border-box;
+  background: #ffA366;
+  padding: 20px;
+}
+
+
+p.liststyle{
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+  margin: 0.5rem;
+  padding: 0;
+  font-size: 30px;
+  font-weight: bolder;
+
+}
+
+div.sortstyle{
+  text-align: center;
+}
+nav {
+  float:right;
+}
+h1 {
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+  margin: 0.5rem;
+  padding: 0;
+}
+
+nav {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+li.icon {
+  flex-basis: 25%;
+}
+
+header {
+  background: #FF6600;
+  padding: 20px;
+}
+
+a {
+  display: block;
+  text-align: center;
+  margin: .25rem;
+  padding: .5rem 1rem;
   text-decoration: none;
-  font-family:sans-serif;
-
+  font-weight: bold;
+  color: white;
+  background: #FF6600;
 }
 
-.title{
-  text-align: center;
-  color: #0e2375 ;
-  font-size: xxx-large;
-  font-weight: bolder;
+a:hover {
+  background: yellowgreen;
 }
 
-.loginForm {
-  position:absolute;
-  width:700px;
-  height:500px;
-  padding: 30px 20px;
-  background-color:#FFFFFF;
-  text-align:center;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
-  border-radius: 15px;
+html {
+  box-sizing: border-box;
 }
 
-.loginForm h2{
-  text-align: center;
-  margin: 50px;
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
-.idForm{
-  border-bottom: 3px solid #adadad;
-  margin: 30px;
-  padding: 10px 10px;
+.body {text-align: -webkit-center}
+
+.input{
+  border: none;
+  background-color:#ffA366 ;
+}
+input.complition{
+  text-align: right;
 }
 
-.passForm{
-  border-bottom: 3px solid #adadad;
-  margin: 30px;
-  padding: 10px 10px;
+.password{
+  width: 83%;
 }
 
-.nameForm{
-  border-bottom: 3px solid #adadad;
-  margin: 30px;
-  padding: 10px 10px;
-}
-
-
-
-
-.id {
-  width: 100%;
-  border:none;
-  outline:none;
-  color: #636e72;
-  font-size:16px;
-  height:25px;
-  background: none;
-}
-
-.pw {
-  width: 100%;
-  border:none;
-  outline:none;
-  color: #636e72;
-  font-size:16px;
-  height:25px;
-  background: none;
-}
-
-.name {
-  width: 100%;
-  border:none;
-  outline:none;
-  color: #636e72;
-  font-size:16px;
-  height:25px;
-  background: none;
-}
-
-
-.btn {
-  position:relative;
-  left:40%;
-  transform: translateX(-50%);
-  margin-bottom: 40px;
-  width:80%;
-  height:40px;
-  background: linear-gradient(125deg,#CAF0F8,#48CAE4,#0077B6);
-  background-position: right;
-  background-size: 110%;
-  color:white;
-  font-weight: bolder;
-  border:none;
-  cursor:pointer;
-  transition: 0.4s;
-  display:inline;
-
-}
-
-.btn:hover {
-  background-position: right;
-}
-
-.bottomText {
-  text-align: center;
-}
-
-.id_check_button{
-  width:40%;
-  height:40px;
-  display:inline;
-  border:none;
-  position: relative;
-  left: 200px;
-  bottom: 20px;
-}
-
-.name_check_button{
-  width:40%;
-  height:40px;
-  display:inline;
-  border:none;
-  position: relative;
-  left: 200px;
-  bottom: 20px;
+.pw{
+  width: 70%;
 }

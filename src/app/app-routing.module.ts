@@ -12,13 +12,12 @@ import {AdminUserListComponent} from "./page/admin-user-list/admin-user-list.com
 import {AdminBoardDetailComponent} from "./page/admin-board-detail/admin-board-detail.component";
 import {AdminBoardModifyComponent} from "./page/admin-board-modify/admin-board-modify.component";
 import {AdminUserModifyComponent} from "./page/admin-user-modify/admin-user-modify.component";
-import {ErrorInterceptor} from "./common/error.interceptor";
+import {ErrorInterceptor} from "./common/error-interceptor";
 
 const routes: Routes = [
-/*  { path: '', component: MainComponent},*/
-  { path: 'boardList',   component: BoardListComponent, },
+  { path: '', component: LoginComponent},
+  { path: 'boardList',   component: BoardListComponent},
   { path: 'boardList/:idx',  component: BoardDetailComponent },
-  { path: 'login', component: LoginComponent},
   { path: 'login/join', component: JoinComponent},
   { path: 'boardModify/:idx', component: BoardModifyComponent},
   { path: 'boardCreate', component: BoardCreateComponent},

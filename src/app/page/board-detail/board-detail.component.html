@@ -43,9 +43,10 @@
 </div>
 
 <div class="detailbutton">
+  <!--<button type=button> 덧글</button>
+  &nbsp;-->
   <button type=button (click)="gotolist()" >확인</button>
- <!-- <button type=button title="삭제" >삭제</button>-->
-  <button type=button (click)="reload(postIdx)" >수정</button>
+  <button type=button (click)="gotoModify(postIdx)" >수정</button>
     <!--postIdx값에 따라, 게시글 수정 페이지로 이동-->
   <button type=button title="삭제" (click)="remove()" >삭제</button>
 </div>
@@ -53,35 +54,67 @@
 <br>
 <br>
 <br>
+<div class="center">
+<div id="form-commentInfo" [formGroup]="CommentForm">
+  <div id="comment-count" >댓글
+    <!--<span id="count">0</span>-->
+  </div>
+  <input id="comment-input" placeholder="댓글을 입력해 주세요." formControlName="comment">
+  <button id="submit" (click)="addcomment()">등록</button>
+</div>
+<div>
+  <form *ngFor="let data of commentList" class="eachComment">
+    <ng-container *ngIf="data.depth ==0" >
+      {{data.comment}}
+      <input type="button" value="답글" class="submit">
+    </ng-container>
+    <ng-container *ngIf="data.depth ==1" >
+      <input type="button" value="대댓글" class="comment2">     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.comment}}
+      <!--<input type="button" value="답글" class="submit">-->
+    </ng-container>
+ <!--   <ng-container *ngIf="data.depth ==2" >
+      <input type="button" value="대댓글" class="comment3">    ➜ &nbsp; {{data.comment}}
+    </ng-container>-->
+    </form>
+</div>
+</div>
+
+  <!--답글 버튼 눌렀을때 나타나도록 설정-->
+<br>
+<br>
+<div class="center">
+<div id="reply-comment"  [formGroup]="ReplyCommentForm">
+  <input id="reply-input" placeholder="답글을 입력해 주세요." formControlName="comment" >
+  <button id="reply-submit" (click)="replyComment()">등록</button>
+</div>
+</div>
+
+
+<!--
 <div class="comment">
-  <p> Comment(s)</p>
-  <table class="comment">
+  <p class="comments"> Comment(s)</p>
+  <table>
     <tr>
       <td colspan="2" class="input">
         <input type="text" placeholder="댓글을 입력하세요." class="write">
       </td>
     </tr>
     <tr>
-      <td rowspan="2" class="submit" ><input type="button" value="등록" ></td>
+      <td colspan="2" > <input type="button" value="등록" class="inputwrite" > </td>
+    </tr>
+    <br>
+    <tr *ngFor="let data of commentList"  style="border-bottom: 1px solid; height: 100px;">
+      <ng-container *ngIf="data.depth == 0 ">
+      <td colspan="2" class="input">{{data.comment}} <input type="button" value="답글" class="inputwrite"> </td>
+      </ng-container>
+      <ng-container *ngIf="data.depth == 1 " class="depth1">
+        <td clospan="2" class="input">{{data.comment}}<input type="button" value="답글" class="inputwrite"></td>
+      </ng-container>
     </tr>
   </table>
 </div>
-<br>
-<br>
-<br>
-<div>
-  <table>
-    <tr style="border-bottom: 1px solid; height: 100px;">
-      <td colspan="2">작성된 댓글 내용 출력칸
-        <br> (덧글 작성자의 경우, 수정/삭제버튼이 있도록 설정)</td>
-    </tr>
-    <tr>
-      <td rowspan="2" style="text-align: right;"><input type="button" value="수정">
-        <input type="button" value="삭제"></td>
-    </tr>
-  </table>
-</div>
-<br>
-<!--<label class="Comment(s)">Comment(s)</label>
-<input id="comment" type="checkbox">
-<nav -->
+-->
+
+
+
+

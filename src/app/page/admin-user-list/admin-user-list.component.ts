@@ -10,26 +10,31 @@ import {User} from "../../model/user";
 })
 export class AdminUserListComponent implements OnInit {
 
+    userList : any =[];
 
-
-  constructor(private router: Router,) {
+  constructor(private router: Router, private userService:UserService,) {
 
   }
 
   ngOnInit(): void {
-
+  this.getalluser()
   }
 
+  getalluser() :void{
+    this.userService.All_User().subscribe(data=>{
+      this.userList = data
 
+    })
+  }
   adminBoard() : void{
     this.router.navigate(['admin/boardList'])
   }
 
-  usermodify() : void{
-    this.router.navigate(['admin/userModify/:idx'])
+  usermodify( idx : number) : void{
+    this.router.navigate(['admin/userModify/' + idx])
   }
 
   userboard() :void{
-    this.router.navigate([''])
+    this.router.navigate(["/boardList"])
   }
 }

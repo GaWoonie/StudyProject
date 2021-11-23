@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {BoardService} from "../../service/board.service";
 import {Observable} from "rxjs";
 import { HttpClient } from "@angular/common/http";
-
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
-import {Board, ListResponse} from "../../model/board";
-import {BoardDetailComponent} from "../board-detail/board-detail.component";
 import {UserService} from "../../service/user.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ListQuery} from "../../service/list-query";
@@ -102,7 +99,6 @@ export class BoardListComponent implements OnInit {
       search_option: queryParams.search_option,
       search_word: queryParams.search_word
     })
-
     this.reload();
   }
 
@@ -115,12 +111,15 @@ export class BoardListComponent implements OnInit {
     };
 
     this.boardService.getList(query).subscribe(data => {
+      console.log(data, "this.boardList data")
       this.boardList = data.items;
+      console.log(this.boardList, "this.boardList")
     });
   }
   gotoadmin() :void{
     this.router.navigate(['admin/boardList'])
   }
+  //권한관리 설정 해야함
 
   searchboard(search_option: string, search_word: string): void{
     this.boardService.getBoardList(this.fc_search_word,this.fc_search_option).subscribe(data=>{
@@ -129,13 +128,6 @@ export class BoardListComponent implements OnInit {
     })
   }
   //option,word 적용하여 페이지 reload.
-
-  sortHit(order: string): void{
-    this.boardService.getBoardSort(this.fgHit).subscribe(data=>{
-      this.boardList = data.items;
-    })
-  }
-
 
   boardhit(hit: number): void {
     console.log("클릭한 행의 hit :" + hit)
@@ -157,7 +149,7 @@ export class BoardListComponent implements OnInit {
 
   logout(): void{
     this.userService.LogOut().subscribe(data =>
-      this.router.navigate(['login'])
+      this.router.navigate([''])
     )
   }
   //로그아웃시킴

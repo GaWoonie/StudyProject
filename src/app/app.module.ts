@@ -5,14 +5,11 @@ import { AppComponent } from './app.component';
 import { BoardListComponent } from './page/board-list/board-list.component';
 import { BoardDetailComponent } from './page/board-detail/board-detail.component';
 import { MainComponent } from './page/main/main.component';
-import {TokenInterceptorService} from "./common/token-interceptor.service";
 import { LoginComponent } from './page/login/login.component';
 import { JoinComponent } from './page/join/join.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule, JsonpInterceptor} from '@angular/common/http';
 import {CommonModule} from "@angular/common";
-import {FormBuilder} from "@angular/forms";
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
-import { environment } from '../environments/environment';
 import { BoardModifyComponent } from './page/board-modify/board-modify.component';
 import { BoardCreateComponent } from './page/board-create/board-create.component';
 import { AdminBoardListComponent } from './page/admin-board-list/admin-board-list.component';
@@ -20,10 +17,11 @@ import { AdminUserListComponent } from './page/admin-user-list/admin-user-list.c
 import { AdminBoardDetailComponent } from './page/admin-board-detail/admin-board-detail.component';
 import { AdminBoardModifyComponent } from './page/admin-board-modify/admin-board-modify.component';
 import { AdminUserModifyComponent } from './page/admin-user-modify/admin-user-modify.component';
-import {ErrorInterceptor} from "./common/error.interceptor";
+import {TokenInterceptorService} from "./common/token-interceptor.service";
+import {ErrorInterceptor} from "./common/error-interceptor";
 
-/*import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-* */
+
+
 
 
 //공통적으로 사용 할 Component, Module, Service 등록 설정파일
@@ -43,6 +41,8 @@ import {ErrorInterceptor} from "./common/error.interceptor";
     AdminBoardModifyComponent,
     AdminUserModifyComponent,
 
+
+
   ],
   imports: [
     CommonModule,
@@ -50,26 +50,16 @@ import {ErrorInterceptor} from "./common/error.interceptor";
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
-
-
-
-/*// HttpClientInMemoryWebApiModule 모듈은 HTTP 요청을 가로채고 서버의 응답을 흉내냅니다.
-// 실제 서버가 준비되면 이 부분을 제거하면 됩니다.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )*/
-    /*HttpClientModule,*/
+    ReactiveFormsModule,
   ],
-  providers: [
-    //공통적으로 사용 할 servicce 등록하는 곳
 
+  providers: [
+    //공통적으로 사용 할 service 등록하는 곳
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
+      useClass: ErrorInterceptor,    /*TokenInterceptorService,*/
       multi: true
     }
-
 
   ],
   bootstrap: [AppComponent],

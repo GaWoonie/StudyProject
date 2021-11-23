@@ -11,3 +11,7 @@ export interface ListQuery {
 }
 /*export type sort_option = 'hit' | 'idx';*/
 
+export interface SortQuery {
+  sort_option : string;
+  sorting: Sort;
+}
