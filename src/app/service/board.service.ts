@@ -5,7 +5,7 @@ import {Add_Comment, Board, Comments, ListResponse} from "../model/board";
 import { environment } from '../../environments/environment'
 import {state} from "@angular/animations";
 import {catchError, map, tap} from "rxjs/operators";
-import {ListQuery, Sort} from "./list-query";
+import {ListQuery, Sort, } from "./list-query";
 
 
 
@@ -82,9 +82,9 @@ export class BoardService {
   //post로 게시글 수정
 
   public deleteBoard(idx: number): Observable<any> {
-    return this.http.post('api/api/back/board/dropPost?idx=' + idx, '');
+    return this.http.post('api/api/back/board/deletePost?idx=' + idx, '');
   }
-  //idx값으로 DB에서 게시글 완전 삭제
+  //idx값으로 DB에서 게시글 ststus=0으로 삭제
 
   public getComment(postidx: number): Observable<Comments> {
     return this.http.get<Comments>('api/api/back/board/getComment/?postidx=' +postidx);

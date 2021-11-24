@@ -13,7 +13,7 @@
 
 
 <div class="search-option" [formGroup]="fgSearch">
-  <select autofocus class="option" name="serching" formControlName="search_option"  >
+  <select  class="option" formControlName="search_option"   >
   <option>---검색옵션---</option>
   <option  value="writer"> 작성자</option>
   <option  value="title"> 제목   </option>
@@ -25,12 +25,12 @@
 </div>
 
 
-<div class="sortstyle" [formGroup]="fgHit" >
+<div class="sortstyle" [formGroup]="fgHit"  >
   <select name = "조회수" id="boardhit" formControlName="order" >
     <option>---정렬기준----</option>
     <option value="asc"> Hit (오름차순) </option>
     <option value="desc">Hit (내림차순) </option>
-   <!-- <option value="asc"> IDX (오름차순) </option>
+  <!--  <option value="asc" > IDX (오름차순) </option>
     <option value="desc">IDX (내림차순) </option> --><!--여기에 클릭 옵션 입력하여 클릭하면 정렬되도록 설정-->
   </select>
 </div>

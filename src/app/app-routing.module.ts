@@ -16,7 +16,7 @@ import {ErrorInterceptor} from "./common/error-interceptor";
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
-  { path: 'boardList',   component: BoardListComponent},
+  { path: 'boardList',   component: BoardListComponent,},
   { path: 'boardList/:idx',  component: BoardDetailComponent },
   { path: 'login/join', component: JoinComponent},
   { path: 'boardModify/:idx', component: BoardModifyComponent},

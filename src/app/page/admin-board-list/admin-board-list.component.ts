@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {BoardService} from "../../service/board.service";
 import {Observable} from "rxjs";
 import { HttpClient } from "@angular/common/http";
-
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {Board, ListResponse} from "../../model/board";
 import {BoardDetailComponent} from "../board-detail/board-detail.component";
 import {UserService} from "../../service/user.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ListQuery} from "../../service/list-query";
+
 @Component({
   selector: 'app-admin-board-list',
   templateUrl: './admin-board-list.component.html',
@@ -81,10 +81,8 @@ export class AdminBoardListComponent implements OnInit {
       this.boardList = data.items;
     });
   }
-
-
-
   //option,word 적용하여 페이지 reload.
+
   godetail(idx: number, hit: number): void {
     console.log("클릭한 행의 idx : " + idx)
     console.log("클릭한 행의 hit :" + hit) //consol에 클릭한 행의 hit 출력되게 함

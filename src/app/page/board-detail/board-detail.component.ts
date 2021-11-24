@@ -26,9 +26,12 @@ export class BoardDetailComponent implements OnInit {
   writeDate : string |undefined;
   commentList: any =[];
   comment : string |undefined;
+  idxComment: number |undefined;
   depth : number |undefined;
   CommentForm : FormGroup;
   ReplyCommentForm : FormGroup;
+  replybutton: boolean |undefined = false;
+  parentidx : number |undefined;
 
 
 
@@ -37,16 +40,17 @@ export class BoardDetailComponent implements OnInit {
     this.boardService = boardService;
     this.CommentForm = this.fb.group({
       parentIdx : new FormControl('',[Validators.required]),
-      depth : new FormControl('', [Validators.required]),
+      depth : new FormControl('0', [Validators.required]),
       comment : new FormControl('', [Validators.required]),
       postidx : this.postIdx
     })
     this.ReplyCommentForm = this.fb.group({
-      parentIdx : this.CommentForm.value.parentIdx,
-      depth : 1,
+      parentIdx : this.commentList.parentidx,
+      depth : new FormControl('1',[Validators.required]),
       comment : new FormControl('',[Validators.required]),
       postidx : this.postIdx
     })
+
   }
   //depth 값 1로 지정할 수 있도록 수정 해야함.
 
@@ -65,21 +69,12 @@ export class BoardDetailComponent implements OnInit {
     });
 
     this.boardService.getComment(this.postIdx).subscribe(data=>{
-      /*var depth0 =data.depth ==0*/
+      this.idxComment = data.idxComments;
       this.depth = data.depth;
       this.commentList = data;
       this.comment = data.comment;
-     /* if(depth0){
-        console.log("depth0" +data.comment)
-      }
-*/
-
-
-      /*console.log("덧글 출력 테스트 :" +data.comment +data.depth)
-      this.comment = data.comment;
-      this.commentList = data;
-      this.depth =data.depth;*/
-
+      this.parentidx = data.parentIdx;
+           console.log("parentidx 번호 : " + data.depth)
     })
   }
 
@@ -127,8 +122,14 @@ export class BoardDetailComponent implements OnInit {
     })
   }
 
-
+  Reply() {
+    if(this.parentidx==this.commentList.parentIdx){
+    this.replybutton = true;
+    }
+    console.log("클릭한 행의 parentidx :" + this.parentidx)
+  }
 }
+
 
 
 

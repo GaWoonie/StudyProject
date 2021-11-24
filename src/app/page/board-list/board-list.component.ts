@@ -34,12 +34,7 @@ export class BoardListComponent implements OnInit {
   fc_search_option : any;
   fc_search_word : string = '';
   fgHit : FormGroup;
-  fc_hit_up : any;
-  fc_hit_down : any;
-  /*fgIdx :FormGroup;
-  fc_idx_up : any;
-  fx_idx_down : any;
-*/
+  fgIdx :FormGroup;
 
 
 
@@ -77,9 +72,10 @@ export class BoardListComponent implements OnInit {
     })
     //hit별 오름/내림차순 정렬
     this.fgHit.valueChanges.subscribe(data=>{
-      this.fc_hit_up = data.order;
-      this.fc_hit_down = data.order;
       this.reload();
+    })
+    this.fgIdx = fb.group({
+      order  : new FormControl('asc',[Validators.required])
     })
   /*  this.fgIdx = fb.group({
       order : new FormControl('desc',[Validators.required])
@@ -129,9 +125,6 @@ export class BoardListComponent implements OnInit {
   }
   //option,word 적용하여 페이지 reload.
 
-  boardhit(hit: number): void {
-    console.log("클릭한 행의 hit :" + hit)
-  }
 
   godetail(idx: number, hit: number): void {
     console.log("클릭한 행의 idx : " + idx)
