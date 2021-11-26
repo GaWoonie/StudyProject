@@ -30,7 +30,6 @@
     </tr>
     <tr>
       <th> NAME</th>
-      <!--<td><input type="text" value="name 입력칸"></td>-->
       <td><input type="text" class="name" formControlName="name"  value="{{name}}"></td>
       <td><input type="button" class="name_check_button"  value="중복확인" (click)="check_name($event)"></td>
     </tr>
@@ -42,7 +41,8 @@
 
     </tr>-->
   </table>
-  <input type="button" class="complition"  value="수정완료" (click)="submit_modify()">
+  <p style="color: #cccccc"> * PW, NAME 수정</p>
+  <input type="button" class="complition"  value="수정완료" [disabled]="!fg_Modify.valid" (click)="submit_modify()">
   <input type="button" class="complition"  value="취소" (click)="adminUser()">
   &nbsp;
   <input type="button" class="out"  value="탈퇴" (click)="deleteUser()" >

@@ -13,7 +13,7 @@
 
 
 <div class="search-option" [formGroup]="fgSearch">
-  <select  class="option" formControlName="search_option"   >
+  <select  class="option" formControlName="search_option">
   <option>---검색옵션---</option>
   <option  value="writer"> 작성자</option>
   <option  value="title"> 제목   </option>
@@ -35,11 +35,91 @@
   </select>
 </div>
 
-
+<!--게시글 depth값 받아오는 api 설정 안됨-->
 <div class="body">
-  <table class ="type01" id="boardtable">
+  <table class ="type01">
     <thead>
-    <tr>
+    <tr style="border-bottom: 4px dashed cadetblue">
+      <th>NO</th>
+      <th>제목</th>
+      <th>글쓴이</th>
+      <th>조회수</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  (click)="godetail(item.idx, item.group_idx)"  *ngFor="let item of boardList">
+      <ng-container *ngIf="item.group_depth==0">
+        <ng-container *ngIf="item.idx == item.group_idx">
+      <td> idx:{{item.idx}}</td>
+      <td>group idx:{{item.group_idx}}</td>
+      <td>{{item.writer}}</td>
+      <td>{{item.hit}}</td>
+      </ng-container>
+      </ng-container>
+       <!--아래부터 답변글 표시하는 형식-->
+      <ng-container *ngIf="item.group_depth==1">
+          <td> group_idx : {{item.group_idx}}</td>
+          <td colspan="2"> <input type="button" value="Re" class="comment2">   {{item.title}}</td>
+          <td>{{item.hit}}</td>
+      </ng-container>
+ <!--     <ng-container *ngIf="item.group_depth==2">
+          <td> group_idx : {{item.group_idx}}</td>
+          <td colspan="2"> <input type="button" value="Re" class="comment2">   {{item.title}}</td>
+          <td>{{item.hit}}</td>
+      </ng-container>-->
+    </tr>
+
+
+ <!--   <tr *ngFor="let item of boardList">
+      <ng-container *ngIf="item.group_depth==1">
+        <ng-container *ngIf="item.group_idx== item.group_idx">
+        <td>{{item.idx}}//{{item.group_idx}}</td>
+        <td colspan="2"> <input type="button" value="Re" class="comment2">   {{item.title}}</td>
+        <td>{{item.writer}}</td>
+      </ng-container>
+      </ng-container>
+    </tr>-->
+
+
+   <!-- <ng-container *ngIf="boardList.group_depth == 1">
+      <tr  (click)="godetail(item.idx,item.hit)"  *ngFor="let item of boardList">
+        <td>답변글{{item.idx}}</td>
+        <td>답변글{{item.title}}</td>
+        <td>답변글{{item.writer}}</td>
+        <td>답변글{{item.hit}}</td>
+      </tr>
+    </ng-container>-->
+    </tbody>
+  </table>
+</div>
+
+<!--<div class="body">
+  <table class ="type01">
+    <thead>
+    <tr style="border-bottom: 4px dashed cadetblue">
+      <th>NO</th>
+      <th>제목</th>
+      <th>글쓴이</th>
+      <th>조회수</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  (click)="godetail(item.idx,item.hit)"  *ngFor="let item of boardList">
+      <td>{{item.idx}}</td>
+      <td>{{item.title}}</td>
+      <td>{{item.writer}}</td>
+      <td>{{item.hit}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>-->
+
+
+
+<!--<div class="body">
+  <table class ="type01">
+    <thead>
+    <tr style="border-bottom: 4px dashed cadetblue">
       <th>NO</th>
       <th>제목</th>
       <th>글쓴이</th>
@@ -57,7 +137,7 @@
     </tr>
     </tbody>
   </table>
-</div>
+</div>-->
 
 
 

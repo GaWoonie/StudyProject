@@ -56,6 +56,7 @@ export class UserService {
 
   Modify_User(user: User) : Observable<User>{
     console.log("user 네임 : "+user.name)
+    console.log(" 비밀번호 : " + user.pw)
     return this.httpClient.put<User>('api/api/back/user/updateUser', user)
   }
   //유저 정보 (id,pw,name) 수정. idx값으로 유저 정보 조회

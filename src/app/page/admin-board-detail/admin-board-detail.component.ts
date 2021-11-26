@@ -15,7 +15,6 @@ export class AdminBoardDetailComponent implements OnInit {
   postIdx : number;
   board : Board | undefined;
   content : string | undefined;
-  /*tiles: any=[];*/
   title : string | undefined;
   writer : string | undefined;
   writeDate : string |undefined;

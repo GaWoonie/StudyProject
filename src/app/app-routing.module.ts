@@ -12,6 +12,9 @@ import {AdminUserListComponent} from "./page/admin-user-list/admin-user-list.com
 import {AdminBoardDetailComponent} from "./page/admin-board-detail/admin-board-detail.component";
 import {AdminBoardModifyComponent} from "./page/admin-board-modify/admin-board-modify.component";
 import {AdminUserModifyComponent} from "./page/admin-user-modify/admin-user-modify.component";
+import {CommentCreateComponent} from "./page/comment-create/comment-create.component";
+import {CommentDetailComponent} from "./page/comment-detail/comment-detail.component";
+import {StatisticsComponent} from "./page/statistics/statistics.component";
 import {ErrorInterceptor} from "./common/error-interceptor";
 
 const routes: Routes = [
@@ -26,6 +29,9 @@ const routes: Routes = [
   { path: 'admin/boardList/:idx', component: AdminBoardDetailComponent},
   { path: 'admin/boardModify/:idx', component: AdminBoardModifyComponent},
   { path: 'admin/userModify/:idx', component: AdminUserModifyComponent},
+  { path: 'comment/:idx', component: CommentDetailComponent},
+  { path: 'write/comment/:idx', component: CommentCreateComponent},
+  { path: 'statistics', component: StatisticsComponent},
   ];
 
 @NgModule({

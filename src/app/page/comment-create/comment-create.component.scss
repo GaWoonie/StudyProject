@@ -9,7 +9,7 @@ table {
 th {
   width: 20%;
   border-bottom: 1px solid #444444;
-  padding: 5px;
+  padding: 8px;
   border-right:1px solid #444444;
 
 }
@@ -30,12 +30,13 @@ td.content{ width: 20%;
   text-align: left;
 }
 tr{
-  background-color: lightgrey;
+  background-color: #EDEDED;
   padding-right: 2px;
 
 }
 
-div.detailbutton{display: inline-block;
+div.detailbutton{
+  display: inline-block;
   flex-basis: 100%;
   text-align: right;
   margin: 1.5rem;    /* 위 아래 간격*/
@@ -43,17 +44,16 @@ div.detailbutton{display: inline-block;
   font-weight: bold;
   background: slategray;
   float: right;
-  outline-style: none
 }
 
 input.create{
-  background-color:lightgrey;
+  background-color:#EDEDED;
   border:0 solid black;
   outline-style: none;
 }
 
 input.createcontent{
-  background-color:lightgrey;
+  background-color:#EDEDED;
   border:0 solid black;
   text-align: left;
   height : 210px;

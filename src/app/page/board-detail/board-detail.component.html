@@ -43,8 +43,8 @@
 </div>
 
 <div class="detailbutton">
-  <!--<button type=button> 덧글</button>
-  &nbsp;-->
+  <button type=button (click)="gotocomment(postIdx)"> 답글</button>
+  &nbsp;
   <button type=button (click)="gotolist()" >확인</button>
   <button type=button (click)="gotoModify(postIdx)" >수정</button>
     <!--postIdx값에 따라, 게시글 수정 페이지로 이동-->
@@ -66,7 +66,7 @@
   <form *ngFor="let data of commentList" class="eachComment">
     <ng-container *ngIf="data.depth ==0" >
       {{data.comment}}
-      <input type="button" value="답글" class="submit" (click)="Reply()" >
+      <input type="button" value="답글" class="submit" (click)="Reply(data.idxComments)" >
       <div class="center" *ngIf="this.replybutton" [formGroup]="ReplyCommentForm">
         <div style="width: 100%;" >
           <input style="width: 80%; height: 3.3em; margin-top: 10px;" placeholder="답글을 입력해 주세요." formControlName="comment" >

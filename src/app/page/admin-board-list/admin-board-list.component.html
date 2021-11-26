@@ -4,25 +4,17 @@
 
   <nav>
     <ul>
-      <!--<li><a>&lt;!&ndash; (click)="write()"&ndash;&gt;글쓰기</a></li>-->
+      <li><a (click)="gotostatistics()">Statistics</a></li>
       <li><a (click)="userboard()">User_Board List</a></li>
       <li><a (click)="adminuser()">Admin_User List</a></li>
     </ul>
   </nav>
 </div>
 
-<div>
-  <select class="option">
-    <option>---정렬 옵션---</option>
-    <option> 일별 등록 현황조회</option>
-    <option> 주별 등록 현황조회</option>
-    <option> 월별 등록 현황조회</option>
-  </select>
-</div>
 <div class="body">
   <table class ="type01" id="boardtable">
     <thead>
-    <tr>
+    <tr style="border-bottom: 4px dashed #FF6600">
       <th>NO</th>
       <th>제목</th>
       <th>글쓴이</th>
@@ -34,14 +26,48 @@
     </thead>
     <tbody>
     <tr *ngFor="let item of boardList">
-      <td>{{item.idx}}</td>
-      <td>{{item.title}}</td>
-      <td>{{item.writer}}</td>
-      <td>{{item.writeDate}}</td>
-      <td>{{item.hit}}</td>
-      <td><input type="button" value="수정/삭제" (click)="godetail(item.idx, item.hit)"></td>
+      <ng-container *ngIf="item.group_depth==0">
+        <ng-container *ngIf="item.idx == item.group_idx">
+          <td>{{item.num}}</td>
+          <td>{{item.title}}</td>
+          <td>{{item.writer}}</td>
+          <td>{{item.writeDate}}</td>
+          <td>{{item.hit}}</td>
+          <td><input type="button" value="수정/삭제" (click)="godetail(item.idx, item.hit)"></td>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="item.group_depth==1">
+        <ng-container *ngIf="item.group_idx== item.group_idx">
+          <td colspan="2"> <input type="button" value="Re" class="comment2"> &nbsp;{{item.title}}</td>
+          <td>{{item.writer}}</td>
+          <td>{{item.writeDate}}</td>
+          <td></td>
+          <td><input type="button" value="수정/삭제" (click)="godetail(item.idx, item.hit)"></td>
+        </ng-container>
+      </ng-container>
+
 
     </tr>
     </tbody>
   </table>
 </div>
+
+
+<tr  (click)="godetail(item.idx,item.hit)"  *ngFor="let item of boardList">
+  <ng-container *ngIf="item.group_depth==0">
+    <ng-container *ngIf="item.idx == item.group_idx">
+      <td> idx:{{item.idx}}</td>
+      <td>group idx:{{item.group_idx}}</td>
+      <td>{{item.writer}}</td>
+      <td>{{item.hit}}</td>
+    </ng-container>
+  </ng-container>
+  <!--아래부터 답변글 표시하는 형식-->
+  <ng-container *ngIf="item.group_depth==1">
+    <ng-container *ngIf="item.group_idx== item.group_idx">
+      <td> group_idx : {{item.group_idx}}</td>
+      <td colspan="2"> <input type="button" value="Re" class="comment2">   {{item.title}}</td>
+      <td>{{item.hit}}</td>
+    </ng-container>
+  </ng-container>
+</tr>

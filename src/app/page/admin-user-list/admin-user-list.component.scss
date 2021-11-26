@@ -1,7 +1,7 @@
-table.type01 { border-collapse: collapse; text-align: center; line-height: 1.5; margin : 20px 10px; background-color: #fffcde; }
-table.type01 th { width: 250px; padding: 10px; font-weight: bold; vertical-align: top; border: 1px solid #ccc;}
-table.type01 td { width: 250px; padding: 10px; vertical-align: top; border: 1px solid #ccc; }
-table.type01 caption { font-size: 35px; color: darkblue; font-weight: bolder;}
+table.type01 { border-collapse: collapse; text-align: center; line-height: 1.5; margin : 20px 10px;}
+table.type01 th { width: 250px; padding: 10px; font-weight: bold; vertical-align: top; }
+table.type01 td { width: 250px; padding: 10px; vertical-align: top;  cursor:pointer}
+table.type01 tr { border-bottom: 1px solid}
 
 
 div.blstyle{
@@ -73,12 +73,6 @@ a:hover {
   background: yellowgreen;
 }
 
-html {
-  box-sizing: border-box;
-}
 
-*, *:before, *:after {
-  box-sizing: inherit;
-}
 
 .body {text-align: -webkit-center}

@@ -1,0 +1,93 @@
+<form>
+  <span>
+  <p style="font-size: 30px">---Statistics---</p>
+  </span>
+  <ul>
+    <li><a (click)="userBoard()" >User_Board List</a></li> &nbsp;
+    <li><a (click)="adminBoard()" >Admin_Board List</a></li>
+  </ul>
+  <br>
+  <br>
+  <div>
+    <p> <!--구분선--></p>
+    <span>
+     <input type="radio" name="calender" (click)="Click_day()"> 일간
+     <input type="radio" name="calender" (click)="Click_week()"> 주간
+     <input type="radio" name="calender" (click)="Click_month()"> 월간
+    </span>
+    <br>
+    <br>
+     <form *ngIf="this.click_day" [formGroup]="Click_Day">
+       <input type="text" placeholder="Year(yyyy)"  style="width: 65px; height: 23px" formControlName="year">
+       <input type="number" placeholder="Month(mm)" formControlName="month" style="width: 70px; height: 23px">
+       <input type="number" placeholder="Day(dd)" formControlName="day" style="width: 50px; height: 23px">
+       <input type="submit" value="조회" (click)="Click_day()" style="height: 27px">
+     </form>
+    <form *ngIf="this.click_week">
+      <span  [formGroup]="Click_Week1">
+      <input type="number" placeholder="Year(yyyy)" formControlName="year" style="width: 65px; height: 23px" >
+      <input type="number" placeholder="Month(mm)" formControlName="month" style="width: 70px; height: 23px">
+      <input type="number" placeholder="Day(dd)" formControlName="day" style="width: 50px; height: 23px">
+        </span>
+      <p> ~ </p>
+      <span [formGroup]="Click_Week2">
+      <input type="number" placeholder="Year(yyyy)" formControlName="year" style="width: 65px; height: 23px">
+      <input type="number" placeholder="Month(mm)" formControlName="month" style="width: 70px; height: 23px">
+      <input type="number" placeholder="Day(dd)" formControlName="day" style="width: 50px; height: 23px">
+      <input type="submit" value="조회" (click)="Click_week()" style="height: 27px">
+        </span>
+    </form>
+    <form *ngIf="this.click_month" [formGroup]="Click_Month" >
+      <input type="number" placeholder="Year(yyyy)" formControlName="year" style="width: 65px; height: 23px">
+      <input type="number" placeholder="Month(mm)" formControlName="month" style="width: 70px; height: 23px">
+      <input type="submit" value="조회" (click)="Click_month()" style="height: 27px">
+    </form>
+  </div>
+
+  <div>
+  <table class ="type01" id="boardtable">
+    <thead>
+    <tr style=" border-bottom: 4px dashed lightgray;">
+      <th>NO</th>
+      <th>제목</th>
+      <th>글쓴이</th>
+      <th>작성시간</th>
+      <th>조회수</th>
+    </tr>
+    </thead>
+    <tbody>
+    <br>
+    <tr>
+      <td>---- idx----</td>
+      <td>-----제목----</td>
+      <td>----작성자----</td>
+      <td>----작성시간----</td>
+      <td>----조회수----</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+</form>
+
+
+
+<!-- <form *ngIf="this.clickDate" [formGroup]="Date">
+ <input type="date"  name="date" formControlName="date"
+
+        min="2021-09-29" max="2021-11-29">
+ <input type="submit" value="Submit" (click)="submit_Date()" >
+ </form>
+ <form *ngIf="this.clickWeek" [formGroup]="Week">
+ <input type="week" formControlName="week"
+        value="2021-W39"
+        min="2021-W39" max="2021-W48">
+ <input type="submit" value="Submit" (click)="submit_Week()">
+ </form>
+ <form *ngIf="this.clickMonth" [formGroup]="Month">
+ <input type="month" formControlName="month"
+        value="2021-09"
+        min="2021-09" max="2021-12">
+ <input type="submit" value="Submit" (click)="submit_Month()">
+ </form>
+-->
+

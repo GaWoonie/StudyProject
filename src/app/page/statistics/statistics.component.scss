@@ -1,0 +1,28 @@
+form{
+ text-align: center;
+  text-align: -webkit-center
+}
+table.type01 { border-collapse: collapse; text-align: center; line-height: 1.5; margin : 20px 10px; }
+table.type01 th { width: 250px; padding: 10px; font-weight: bold; vertical-align: top; }
+table.type01 td { width: 250px; padding: 10px; vertical-align: top;  cursor:pointer }
+
+
+
+ul {
+  list-style: none;
+  margin:-50px;
+  padding: 50px;
+  display: flex;
+  float: right;
+}
+
+li {
+  border:1px solid; padding:10px;
+  background-color: #EDEDED;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+//input=number 화살표 없애는 것

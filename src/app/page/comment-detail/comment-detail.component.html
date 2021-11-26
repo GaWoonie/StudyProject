@@ -1,0 +1,47 @@
+<router-outlet></router-outlet>
+<div>
+  <form>
+    <table>
+
+      <colgroup>
+        <col style="width:20%">         <!--왼쪽 셀 간격-->
+        <col style="width:80%">           <!-- 오른쪽 셀 간격-->
+        <!-- <col style="width:10%">    얜 뭔지 모름-->
+      </colgroup>
+
+
+      <tr>
+        <td>제목</td>
+        <td>{{title}}</td>
+
+      </tr>
+      <tr>
+        <td>작성자</td>
+        <td><!--작성자 닉네임-->{{writer}}</td>
+
+
+      </tr>
+
+      <tr>
+        <td>작성시간</td>
+        <td><!--작성한 시간 표기-->{{writeDate}}</td>
+      </tr>
+
+      <!--      <tr>
+              <td colspan="2"> &lt;!&ndash;class="content"&ndash;&gt;내용</td>
+            </tr>-->
+
+      <tr>
+        <td colspan="2" height="300"> <!--class="content"-->{{content}}</td>
+      </tr>
+
+
+
+    </table>
+  </form>
+</div>
+
+<div class="detailbutton">
+  <input type=button value="답글" (click)="writeReply()">
+  <input type=button value="취소" onClick="history.go(-1)">
+</div>

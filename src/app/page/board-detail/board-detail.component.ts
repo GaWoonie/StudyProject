@@ -16,6 +16,8 @@ import {ListQuery} from "../../service/list-query";
 
 export class BoardDetailComponent implements OnInit {
 
+  add_commnet : Add_Comment | undefined;
+
   public boardService: BoardService;
   postIdx : number;
   board : Board | undefined;
@@ -31,8 +33,9 @@ export class BoardDetailComponent implements OnInit {
   CommentForm : FormGroup;
   ReplyCommentForm : FormGroup;
   replybutton: boolean |undefined = false;
-  parentidx : number |undefined;
+  parentidx : number =0 ;
 
+  clicked_idx : number = 0;
 
 
   constructor(private activatedRoute : ActivatedRoute, private router:Router, boardService:BoardService,private fb:FormBuilder) {
@@ -45,8 +48,8 @@ export class BoardDetailComponent implements OnInit {
       postidx : this.postIdx
     })
     this.ReplyCommentForm = this.fb.group({
-      parentIdx : this.commentList.parentidx,
-      depth : new FormControl('1',[Validators.required]),
+      parentIdx : this.parentidx,
+      depth : 1,
       comment : new FormControl('',[Validators.required]),
       postidx : this.postIdx
     })
@@ -59,7 +62,7 @@ export class BoardDetailComponent implements OnInit {
   ngOnInit(): void {
     this.boardService.getBoard(this.postIdx).subscribe(data => {
 
-      console.log("테스트 확인 타이틀 : "+data.title)
+      console.log("테스트 확인 타이틀 : "+data.idx)
 
       this.title = data.title;
       this.board = data;
@@ -111,22 +114,30 @@ export class BoardDetailComponent implements OnInit {
   }
 
   replyComment(): void{
-    const query: Add_Comment = {
-      comment : this.ReplyCommentForm.value.comment,
-      depth : 1,
-      parentIdx : this.ReplyCommentForm.value.parentIdx,
-      postidx : this.ReplyCommentForm.value.postidx
-    };
-    this.boardService.ReplyComment(query).subscribe(data=>{
-      this.commentReload()
-    })
+
+    console.log("parentIdx : "+this.clicked_idx+"  comment : "+this.ReplyCommentForm.value.comment+ " depth : "+1+" postIdx : "+this.ReplyCommentForm.value.postidx)
+
+    /*this.boardService.ReplyComment().subscribe(data=>{
+      console.log("답글등록"  +this.ReplyCommentForm.value)
+      /!*this.commentReload()*!/
+    })*/
   }
 
-  Reply() {
+  Reply(idxComment : number) {
+    this.clicked_idx = idxComment;
+
     if(this.parentidx==this.commentList.parentIdx){
     this.replybutton = true;
     }
-    console.log("클릭한 행의 parentidx :" + this.parentidx)
+  }
+
+  contents(parentidx : number){
+    console.log("patentidx 확인 :" + parentidx)
+  }
+
+  gotocomment(idx : number) :void{
+    this.postIdx = idx
+    this.router.navigate(['write/comment/',idx])
   }
 }
 

@@ -20,13 +20,13 @@ export class AdminUserModifyComponent implements OnInit {
   click : boolean = false;
   Idx :number |undefined;
   id : string |undefined;
-
+  doubleCheck : boolean | undefined = false
 
   constructor(private router:Router, private fb:FormBuilder,userService:UserService,private activatedRoute: ActivatedRoute) {
     this.Idx = this.activatedRoute.snapshot.params["idx"]
     this.fg_Modify = fb.group({
-      pw : new FormControl('',[Validators.required]),
-      name : new FormControl('',[Validators.required]),
+      pw : new FormControl('',[Validators.required, Validators.minLength(4),]),
+      name : new  FormControl('',[Validators.required]),
       id : this.id,
        });
     this.userService = userService;
@@ -54,12 +54,17 @@ export class AdminUserModifyComponent implements OnInit {
    /* this.user.id = this.fg_Modify.controls.fc_id.value;
     this.user.pw = this.fg_Modify.controls.fc_pw.value;
     this.user.name = this.fg_Modify.controls.fc_name.value;
-*/ this.fg_Modify.value.idx =  this.Idx
+*/ if(this.doubleCheck == true){
+    this.fg_Modify.value.idx =  this.Idx
+    this.user.pw = this.fg_Modify.controls.pw.value;
     this.user.name = this.fg_Modify.controls.name.value;
     this.userService.Modify_User(this.fg_Modify.value).subscribe(data=>{
-      console.log("정상출력:" + this.fg_Modify)
-      this.adminUser()
-    })
+      console.log("정상출력:" + this.fg_Modify.value.pw)
+     /* this.adminUser()*/
+    })} else {
+    alert("중복확인이 필요합니다.")
+    }
+
    /* // @ts-ignore
     this.userService.Modify_User(this.Idx).subscribe(data=>{
       this.id = data.id;
@@ -75,10 +80,12 @@ export class AdminUserModifyComponent implements OnInit {
       console.log(response,"check data!!")
       if (response == 1) {
         alert("중복되어 사용 할 수 없는 NickName입니다.")
+        this.doubleCheck = false;
       } else {
         alert("사용 가능 한 NickName입니다.")
         this.click = !this.click;
         (event.target as HTMLButtonElement).disabled = true;
+        this.doubleCheck = true
 
       }
     })

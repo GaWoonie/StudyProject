@@ -24,7 +24,7 @@
   </div>-->
 
 
-  <button type="button" class="btn" (click)="submit_join()">
+  <button type="button" class="btn" [disabled]="!fg_join.valid" (click)="submit_join()">
    sign up<!--홈화면으로 이동하게 설정-->
   </button>
 </form>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {BoardService} from "../../service/board.service";
 import {Observable} from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+import {ActivatedRoute, NavigationExtras, Router, RouterLink} from "@angular/router";
 import {UserService} from "../../service/user.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ListQuery} from "../../service/list-query";
@@ -57,7 +57,7 @@ export class BoardListComponent implements OnInit {
 
     this.userService = userService
     this.fgSearch =fb.group({
-      search_option :new FormControl('wirter,title,content',[Validators.required]),
+      search_option :new FormControl('writer,title,content',[Validators.required]),
       search_word : new FormControl('')
     })
     //option,word 입력될 formgroup 생성
@@ -77,6 +77,7 @@ export class BoardListComponent implements OnInit {
     this.fgIdx = fb.group({
       order  : new FormControl('asc',[Validators.required])
     })
+
   /*  this.fgIdx = fb.group({
       order : new FormControl('desc',[Validators.required])
     })
@@ -96,22 +97,22 @@ export class BoardListComponent implements OnInit {
       search_word: queryParams.search_word
     })
     this.reload();
+
   }
 
   private reload() {
     const query: ListQuery = {
       search_option: this.fgSearch.value.search_option,
       search_word: this.fgSearch.value.search_word,
-      sort_option: 'hit',
+      sort_option: 'group_hit',
       sorting: this.fgHit.value.order,
     };
 
     this.boardService.getList(query).subscribe(data => {
-      console.log(data, "this.boardList data")
       this.boardList = data.items;
-      console.log(this.boardList, "this.boardList")
     });
   }
+
   gotoadmin() :void{
     this.router.navigate(['admin/boardList'])
   }
@@ -126,10 +127,20 @@ export class BoardListComponent implements OnInit {
   //option,word 적용하여 페이지 reload.
 
 
-  godetail(idx: number, hit: number): void {
-    console.log("클릭한 행의 idx : " + idx)
-    console.log("클릭한 행의 hit :" + hit) //consol에 클릭한 행의 hit 출력되게 함
+  godetail(idx: number, group_idx: number): void {
+    if(idx == group_idx){
+      console.log(idx +"그룹:" +group_idx)
+      console.log("클릭한 행의 idx : " + idx)
     this.router.navigate(["boardList/", idx])
+    } else {
+      console.log ("클릭한 행의 idx :" +idx)
+      let extras : NavigationExtras = {
+        queryParams: {
+          "idx" : idx
+        }
+      }
+      this.router.navigate(["comment/",idx],extras)
+    }
   }
 
   //idx 값을 가져와 /뒤에 입력해 줌, idx값에 따라 detail화면 출력.

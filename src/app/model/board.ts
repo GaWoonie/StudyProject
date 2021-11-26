@@ -1,11 +1,17 @@
 export interface Board {
-  idx: number;
+  num : number;
+  idx:number;
   title:string;
   writer:string;
   content:string;
   writeDate : string;
   hit : number;
-  state: number
+  state: number;
+  id : string;
+  group_idx : number;
+  group_depth : number;
+  group_order : number;
+  reply : string;
 }
 
 
@@ -38,4 +44,5 @@ export interface Add_Comment {
   depth : number;
   parentIdx : number;
   postidx : number;
+  id : string;
 }

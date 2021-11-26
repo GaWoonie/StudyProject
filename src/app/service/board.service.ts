@@ -34,10 +34,10 @@ export class BoardService {
   constructor(private http: HttpClient) {
   }
 
-/*  public getBoardList(): Observable<ListResponse> {
-    return this.http.get<ListResponse>('http://localhost:8087/api/back/board/getBoardList');
+  public BoardList(): Observable<ListResponse> {
+    return this.http.get<ListResponse>('api/api/back/board/getBoardList');
   }
-  // API에서 모든 게시글을 조회.*/
+  // API에서 모든 게시글을 조회.
 
   public getBoardList(search_word?: any, search_option?: any): Observable<ListResponse>{
 
@@ -96,14 +96,18 @@ export class BoardService {
   }
   //댓글 등록 (parentIdx, depth, comment, postidx)
 
-  public ReplyComment(query?: Add_Comment): Observable<Add_Comment>{
-    const params = {
-      comment : query?.comment,
-      depth : query?.depth,
-      parentIdx : query?.parentIdx,
-      postidx : query?.postidx
-    }
-    return this.http.post<Add_Comment>('api/api/back/board/addComment',{ params})
+  public ReplyComment(comment : String , postIdx : number, parentIdx : number, depth:number): Observable<Add_Comment>{
+
+    return this.http.post<Add_Comment>('api/api/back/board/addComment',
+      {
+        comment : comment,
+        postidx : postIdx,
+        parentIdx : parentIdx,
+        depth : depth
+      }
+
+      )
   }
+  //답글 등록 (parentIdx, depth, comment, postidx)
 
 }

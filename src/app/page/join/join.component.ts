@@ -16,6 +16,7 @@ export class JoinComponent implements OnInit {
   fg_join : FormGroup;
   id_check!: boolean;
   click : boolean = false;
+  doubleCheck : boolean |undefined = false;
 
 
   constructor(private router:Router, private fb:FormBuilder, userService:UserService,) {
@@ -49,11 +50,11 @@ export class JoinComponent implements OnInit {
     this.userService.SignUP(this.user).subscribe(response =>{
 
       console.log(response,"dddd")
-
+      if(this.doubleCheck == true){
         this.router.navigate([''])
         alert("Welcome!!")
-    }, error => {
-      alert("다시 입력하세요");
+    }}, error => {
+      alert("중복확인이 필요합니다.");
     })
   }
 
@@ -64,10 +65,12 @@ export class JoinComponent implements OnInit {
       console.log(data, "data!")
       if (data == 1) {
         alert("중복되어 사용 할 수 없는 ID입니다.")
+        this.doubleCheck = false;
       } else {
         alert("사용 가능 한 ID입니다.")
         this.click = !this.click;
         (event.target as HTMLButtonElement).disabled = true;
+        this.doubleCheck = true;
 
         //사용 가능할 시, 중복체크 버튼 비활성화
       }
@@ -81,10 +84,12 @@ export class JoinComponent implements OnInit {
       console.log(response,"check data!!")
       if (response == 1) {
         alert("중복되어 사용 할 수 없는 NickName입니다.")
+        this.doubleCheck = false;
       } else {
         alert("사용 가능 한 NickName입니다.")
         this.click = !this.click;
         (event.target as HTMLButtonElement).disabled = true;
+        this.doubleCheck = true;
 
       }
     })

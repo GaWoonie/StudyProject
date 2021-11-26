@@ -35,7 +35,7 @@ export class BoardCreateComponent implements OnInit {
     this.createform = this.fb.group({
         title:new FormControl('' ,[Validators.required]),
         content:new FormControl('',[Validators.required]),
-        writer:new FormControl('',[Validators.required])
+        writer:new FormControl('',[Validators.required]),
       })
   }
 

@@ -56,7 +56,7 @@
   </form>
 </div>
     <div class="detailbutton">
-      <button type=button title="완료"  (click)="modify()">
+      <button type=button title="완료"  [disabled]="!modifyform.valid"(click)="modify()">
           완료
       </button>
       <!-- <button type=button title="삭제" >삭제</button>-->
