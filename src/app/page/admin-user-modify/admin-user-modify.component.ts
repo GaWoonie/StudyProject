@@ -14,7 +14,7 @@ export class AdminUserModifyComponent implements OnInit {
   userList : User |undefined;
   user = new User();
   fg_Modify : FormGroup;
-  pw : string |undefined;
+  password : string |undefined;
  name : string | undefined;
   idx : number |undefined;
   click : boolean = false;
@@ -25,9 +25,9 @@ export class AdminUserModifyComponent implements OnInit {
   constructor(private router:Router, private fb:FormBuilder,userService:UserService,private activatedRoute: ActivatedRoute) {
     this.Idx = this.activatedRoute.snapshot.params["idx"]
     this.fg_Modify = fb.group({
-      pw : new FormControl('',[Validators.required, Validators.minLength(4),]),
+      password : new FormControl('',[Validators.required, Validators.minLength(4),]),
       name : new  FormControl('',[Validators.required]),
-      id : this.id,
+      id : this.user.id
        });
     this.userService = userService;
   }
@@ -39,7 +39,7 @@ export class AdminUserModifyComponent implements OnInit {
     this.userService.Select_User(this.Idx).subscribe(data=>{
       this.Idx = data.idx;
       this.id = data.id;
-      this.pw = data.password;
+      this.password = data.password;
       this.name = data.name;
     })
 
@@ -56,10 +56,11 @@ export class AdminUserModifyComponent implements OnInit {
     this.user.name = this.fg_Modify.controls.fc_name.value;
 */ if(this.doubleCheck == true){
     this.fg_Modify.value.idx =  this.Idx
-    this.user.password = this.fg_Modify.controls.pw.value;
+    this.user.password = this.fg_Modify.controls.password.value;
     this.user.name = this.fg_Modify.controls.name.value;
+    this.user.id = this.fg_Modify.value.id
     this.userService.Modify_User(this.fg_Modify.value).subscribe(data=>{
-      console.log("정상출력:" + this.fg_Modify.value.pw)
+      console.log("정상출력:" + this.fg_Modify.value.password)
      /* this.adminUser()*/
     })} else {
     alert("중복확인이 필요합니다.")

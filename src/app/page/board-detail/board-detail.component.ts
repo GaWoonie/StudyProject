@@ -117,10 +117,11 @@ export class BoardDetailComponent implements OnInit {
 
     console.log("parentIdx : "+this.clicked_idx+"  comment : "+this.ReplyCommentForm.value.comment+ " depth : "+1+" postIdx : "+this.ReplyCommentForm.value.postidx)
 
-    /*this.boardService.ReplyComment().subscribe(data=>{
+    // @ts-ignore
+    this.boardService.ReplyComment(this.ReplyCommentForm).subscribe(data=>{
       console.log("답글등록"  +this.ReplyCommentForm.value)
-      /!*this.commentReload()*!/
-    })*/
+      /*this.commentReload()*/
+    })
   }
 
   Reply(idxComment : number) {

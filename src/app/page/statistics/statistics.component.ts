@@ -23,6 +23,7 @@ export class StatisticsComponent implements OnInit {
   Click_Week1 : FormGroup;
   Click_Week2 : FormGroup;
   Click_Month : FormGroup;
+  monthDate : any;
   click_day : boolean |undefined =false;
   click_week : boolean |undefined =false;
   click_month : boolean |undefined =false;
@@ -57,7 +58,6 @@ export class StatisticsComponent implements OnInit {
       year : new FormControl('',[Validators.required]),
       month : new FormControl('',[Validators.required]),
     })
-
   }
 
 
@@ -102,7 +102,7 @@ export class StatisticsComponent implements OnInit {
     const query: DateQuery = {
       request : 'monthly',
       offset_date : this.Click_Month.value.year +'-' +this.Click_Month.value.month + '-01' ,
-      limit_date : this.Click_Month.value.year +'-' +this.Click_Month.value.month + '-30' ,
+      limit_date : this.Click_Month.value.year +'-' +this.Click_Month.value.month + '-31' ,
     }
     this.boardService.getBoardByDate(query).subscribe(data=>{
       this.boardList = data.boardList;
@@ -154,6 +154,12 @@ export class StatisticsComponent implements OnInit {
     this.click_week = false;
     console.log(this.Click_Month.value)
     this.reloadByMonth()
+  }
+
+  godetail(idx: number, hit: number): void {
+    console.log("클릭한 행의 idx : " + idx)
+    console.log("클릭한 행의 hit :" + hit) //consol에 클릭한 행의 hit 출력되게 함
+    this.router.navigate(["admin/boardList/", idx])
   }
 
 

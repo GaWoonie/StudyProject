@@ -51,7 +51,7 @@ export class CommentCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.group_Depth==1){
+    if(this.board?.group_depth==1){
       this.reply1 = false;
       this.reply2 = true;
     } else {
