@@ -46,3 +46,10 @@ export interface Add_Comment {
   postidx : number;
   id : string;
 }
+
+export interface ListByDate {
+  count : number;
+  boardList : Board[];
+}
+
+

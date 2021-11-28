@@ -21,7 +21,7 @@
        <input type="text" placeholder="Year(yyyy)"  style="width: 65px; height: 23px" formControlName="year">
        <input type="number" placeholder="Month(mm)" formControlName="month" style="width: 70px; height: 23px">
        <input type="number" placeholder="Day(dd)" formControlName="day" style="width: 50px; height: 23px">
-       <input type="submit" value="조회" (click)="Click_day()" style="height: 27px">
+       <input type="submit" value="조회" (click)="Click_dayList()" style="height: 27px">
      </form>
     <form *ngIf="this.click_week">
       <span  [formGroup]="Click_Week1">
@@ -34,13 +34,13 @@
       <input type="number" placeholder="Year(yyyy)" formControlName="year" style="width: 65px; height: 23px">
       <input type="number" placeholder="Month(mm)" formControlName="month" style="width: 70px; height: 23px">
       <input type="number" placeholder="Day(dd)" formControlName="day" style="width: 50px; height: 23px">
-      <input type="submit" value="조회" (click)="Click_week()" style="height: 27px">
+      <input type="submit" value="조회" (click)="Click_weekList()" style="height: 27px">
         </span>
     </form>
     <form *ngIf="this.click_month" [formGroup]="Click_Month" >
       <input type="number" placeholder="Year(yyyy)" formControlName="year" style="width: 65px; height: 23px">
       <input type="number" placeholder="Month(mm)" formControlName="month" style="width: 70px; height: 23px">
-      <input type="submit" value="조회" (click)="Click_month()" style="height: 27px">
+      <input type="submit" value="조회" (click)="Click_monthList()" style="height: 27px">
     </form>
   </div>
 
@@ -57,12 +57,12 @@
     </thead>
     <tbody>
     <br>
-    <tr>
-      <td>---- idx----</td>
-      <td>-----제목----</td>
-      <td>----작성자----</td>
-      <td>----작성시간----</td>
-      <td>----조회수----</td>
+    <tr *ngFor="let item of boardList">
+      <td>{{item.idx}}</td>
+      <td>{{item.title}}</td>
+      <td>{{item.writer}}</td>
+      <td>{{item.writeDate}}</td>
+      <td>{{item.hit}}</td>
     </tr>
     </tbody>
   </table>

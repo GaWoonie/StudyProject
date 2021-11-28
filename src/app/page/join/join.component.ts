@@ -43,7 +43,7 @@ export class JoinComponent implements OnInit {
 
   submit_join(): void{
     this.user.id = this.fg_join.controls.fc_id.value;
-    this.user.pw = this.fg_join.controls.fc_pw.value;
+    this.user.password = this.fg_join.controls.fc_pw.value;
     this.user.name = this.fg_join.controls.fc_name.value;
 
 

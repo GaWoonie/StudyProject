@@ -39,7 +39,7 @@ export class AdminUserModifyComponent implements OnInit {
     this.userService.Select_User(this.Idx).subscribe(data=>{
       this.Idx = data.idx;
       this.id = data.id;
-      this.pw = data.pw;
+      this.pw = data.password;
       this.name = data.name;
     })
 
@@ -56,7 +56,7 @@ export class AdminUserModifyComponent implements OnInit {
     this.user.name = this.fg_Modify.controls.fc_name.value;
 */ if(this.doubleCheck == true){
     this.fg_Modify.value.idx =  this.Idx
-    this.user.pw = this.fg_Modify.controls.pw.value;
+    this.user.password = this.fg_Modify.controls.pw.value;
     this.user.name = this.fg_Modify.controls.name.value;
     this.userService.Modify_User(this.fg_Modify.value).subscribe(data=>{
       console.log("정상출력:" + this.fg_Modify.value.pw)

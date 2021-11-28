@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from "@angular/common/http";
 import {Observable, of, throwError} from 'rxjs'
-import {Add_Comment, Board, Comments, ListResponse} from "../model/board";
+import {Add_Comment, Board, Comments, ListByDate, ListResponse} from "../model/board";
 import { environment } from '../../environments/environment'
 import {state} from "@angular/animations";
 import {catchError, map, tap} from "rxjs/operators";
-import {ListQuery, Sort, } from "./list-query";
+import {DateQuery, ListQuery, Request, Sort,} from "./list-query";
 
 
 
@@ -65,6 +65,20 @@ export class BoardService {
     }
     return this.http.get<ListResponse>(uri, { params });
   }
+  // api에서 전체 게시글 리스트 조회
+
+  public getBoardByDate(query? : DateQuery) {
+    const uri = 'api/api/back/board/getBoardListByDate';
+
+
+    const params = {
+      request : query?.request ?? '',
+      offset_date : query?.offset_date ?? '',
+      limit_date : query?.limit_date ?? '',
+    }
+    return this.http.get<ListByDate>(uri, {params});
+    }
+
 
   public getBoard(idx: number): Observable<Board> {
     return this.http.get<Board>('api/api/back/board/getPostHit/?idx=' + idx);
@@ -109,5 +123,6 @@ export class BoardService {
       )
   }
   //답글 등록 (parentIdx, depth, comment, postidx)
+
 
 }

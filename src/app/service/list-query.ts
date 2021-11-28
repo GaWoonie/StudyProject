@@ -11,4 +11,10 @@ export interface ListQuery {
 }
 /*export type sort_option = 'hit' | 'idx';*/
 
+export type Request = 'daily' | 'weekly' | 'monthly';
 
+export interface DateQuery {
+  request : Request;
+  offset_date : string;
+  limit_date : string;
+}
