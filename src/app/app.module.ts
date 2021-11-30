@@ -23,6 +23,7 @@ import { CommentCreateComponent } from './page/comment-create/comment-create.com
 import { CommentDetailComponent } from './page/comment-detail/comment-detail.component';
 import { StatisticsComponent } from './page/statistics/statistics.component';
 import {Chart} from "chart.js";
+import { ReCommentDatailComponent } from './page/re-comment-datail/re-comment-datail.component';
 
 
 //공통적으로 사용 할 Component, Module, Service 등록 설정파일
@@ -44,6 +45,7 @@ import {Chart} from "chart.js";
     CommentCreateComponent,
     CommentDetailComponent,
     StatisticsComponent,
+    ReCommentDatailComponent,
 
 
 

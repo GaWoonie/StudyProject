@@ -156,10 +156,10 @@ export class BoardDetailComponent implements OnInit {
     let extras : NavigationExtras = {
       queryParams: {
         "idx" : idx,
-        "group_depth" : group_depth
+        "group_depth" : group_depth + 1,
       }
     }
-    console.log("그룹 뎁쓰 : "+group_depth)
+    console.log("그룹 뎁쓰 : ", extras);
     this.router.navigate(['write/comment/',idx],extras)
   }
 }

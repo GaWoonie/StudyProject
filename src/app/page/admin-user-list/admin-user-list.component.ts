@@ -13,7 +13,6 @@ export class AdminUserListComponent implements OnInit {
     userList : any =[];
 
   constructor(private router: Router, private userService:UserService) {
-
   }
 
   ngOnInit(): void {

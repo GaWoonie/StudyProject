@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {Add_Comment, Board} from "../../model/board";
-import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
 import {BoardService} from "../../service/board.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Board} from "../../model/board";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-comment-detail',
-  templateUrl: './comment-detail.component.html',
-  styleUrls: ['./comment-detail.component.scss']
+  selector: 'app-re-comment-datail',
+  templateUrl: './re-comment-datail.component.html',
+  styleUrls: ['./re-comment-datail.component.scss']
 })
-export class CommentDetailComponent implements OnInit {
-  add_commnet : Add_Comment | undefined;
+export class ReCommentDatailComponent implements OnInit {
   boardList: any = [];
   public boardService: BoardService;
   postIdx : number;
@@ -22,17 +20,11 @@ export class CommentDetailComponent implements OnInit {
   comment : string |undefined;
   group_Depth : number;
 
-
   constructor(private activatedRoute : ActivatedRoute, private router:Router, boardService:BoardService) {
     this.postIdx = this.activatedRoute.snapshot.params["idx"]
     this.group_Depth = this.activatedRoute.snapshot.params["group_depth"]
     this.boardService = boardService;
-
-
   }
-  //depth 값 1로 지정할 수 있도록 수정 해야함.
-
-
 
   ngOnInit(): void {
     this.boardService.getBoard(this.postIdx).subscribe(data => {
@@ -48,25 +40,6 @@ export class CommentDetailComponent implements OnInit {
       console.log("조회한 게시글의 group_depth :" + data.group_depth)
       console.log("게시글의 그룹뎁쓰 :" + this.group_Depth)
     });
-
-    this.boardService.getBoardList().subscribe(data => {
-      this.boardList = data.items;
-    });
   }
 
-  writeReply(idx : number, group_depth : number) : void {
-    let extras : NavigationExtras = {
-      queryParams: {
-        "idx" : idx,
-        "group_depth" : group_depth
-      }
-    }
-    this.router.navigate(['write/comment/',this.postIdx],extras)
-    console.log(group_depth)
-  }
-  godetail(idx: number): void {
-      console.log ("클릭한 행의 idx :" +idx)
-      this.router.navigate(["recomment/",idx])
-    }
-  }
-
+}

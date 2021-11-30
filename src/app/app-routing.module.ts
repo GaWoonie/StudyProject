@@ -15,6 +15,7 @@ import {AdminUserModifyComponent} from "./page/admin-user-modify/admin-user-modi
 import {CommentCreateComponent} from "./page/comment-create/comment-create.component";
 import {CommentDetailComponent} from "./page/comment-detail/comment-detail.component";
 import {StatisticsComponent} from "./page/statistics/statistics.component";
+import {ReCommentDatailComponent} from "./page/re-comment-datail/re-comment-datail.component";
 import {ErrorInterceptor} from "./common/error-interceptor";
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'comment/:idx', component: CommentDetailComponent},
   { path: 'write/comment/:idx', component: CommentCreateComponent},
   { path: 'statistics', component: StatisticsComponent},
+  { path: 'recomment/:idx', component: ReCommentDatailComponent},
   ];
 
 @NgModule({

@@ -5,7 +5,7 @@
 <nav>
   <ul>
     <li><a (click)="write()">글쓰기</a></li>
-    <li><a (click)="gotoadmin()">관리자</a></li>
+    <li><ng-container *ngIf="this.confirmUser"><a (click)="gotoadmin()">관리자</a></ng-container></li>
     <li><a (click)="logout()">로그아웃</a></li>
   </ul>
 </nav>
@@ -39,7 +39,7 @@
 <div class="body">
   <table class ="type01">
     <thead>
-    <tr style="border-bottom: 4px dashed cadetblue">
+    <tr>
       <th>NO</th>
       <th>제목</th>
       <th>글쓴이</th>
@@ -47,7 +47,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr  (click)="godetail(item.idx, item.group_idx, item.group_depth)"  *ngFor="let item of boardList">
+    <tr  class="List" (click)="godetail(item.idx, item.group_idx, item.group_depth)"  *ngFor="let item of boardList">
       <ng-container *ngIf="item.group_depth==0">
         <ng-container *ngIf="item.idx == item.group_idx">
       <td>{{item.num}}</td>
@@ -62,11 +62,11 @@
           <td colspan="2"> <input type="button" value="Re" class="comment2">   {{item.title}}&nbsp;&nbsp;&nbsp;[{{item.writer}}]</td>
           <td>{{item.hit}}</td>
       </ng-container>
- <!--     <ng-container *ngIf="item.group_depth==2">
+      <ng-container *ngIf="item.group_depth==2">
           <td> group_idx : {{item.group_idx}}</td>
-          <td colspan="2"> <input type="button" value="Re" class="comment2">   {{item.title}}</td>
+          <td colspan="2"> <input type="button" value="Re:Re" class="comment3">   {{item.title}}</td>
           <td>{{item.hit}}</td>
-      </ng-container>-->
+      </ng-container>
     </tr>
     </tbody>
   </table>

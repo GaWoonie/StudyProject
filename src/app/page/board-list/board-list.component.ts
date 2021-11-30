@@ -35,7 +35,11 @@ export class BoardListComponent implements OnInit {
   fc_search_word : string = '';
   fgHit : FormGroup;
   fgIdx :FormGroup;
-
+  confirm : boolean |undefined;
+  Authority : string;
+  Authority0 : string;
+  Authority1 : string;
+  confirmUser : boolean |undefined = false;
 
   flag_search = false;
 
@@ -53,7 +57,14 @@ export class BoardListComponent implements OnInit {
     private route: ActivatedRoute,
     userService:UserService,
     private fb:FormBuilder) {
-    this.userService = userService
+    this.userService = userService;
+    // @ts-ignore
+    this.Authority0 = this.route.snapshot.queryParamMap.get("authority0")
+    // @ts-ignore
+    this.Authority1 = this.route.snapshot.queryParamMap.get("authority1")
+    // @ts-ignore
+    this.Authority = this.route.snapshot.queryParamMap.get("authority")
+    console.log(this.Authority)
     this.fgSearch =fb.group({
       search_option :new FormControl('writer,title,content',[Validators.required]),
       search_word : new FormControl('')
@@ -95,6 +106,8 @@ export class BoardListComponent implements OnInit {
       search_word: queryParams.search_word
     })
     this.reload();
+    this.confirmAdmin()
+
   }
 
   private reload() {
@@ -110,8 +123,19 @@ export class BoardListComponent implements OnInit {
     });
   }
 
+  confirmAdmin() : void {
+    // @ts-ignore
+    if(this.Authority == "2"){
+      this.confirmUser = true
+    } else{
+      this.confirmUser = false
+    }
+    //권한 배열 갯수가 2개면 관리자 버튼을 띄움.
+  }
+
   gotoadmin() :void{
-    this.router.navigate(['admin/boardList'])
+    // @ts-ignore
+      this.router.navigate(['admin/boardList'])
   }
   //권한관리 설정 해야함
 

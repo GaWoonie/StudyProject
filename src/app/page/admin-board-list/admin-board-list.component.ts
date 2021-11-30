@@ -108,7 +108,7 @@ export class AdminBoardListComponent implements OnInit {
   }
 
   userboard() :void{
-    this.router.navigate(["/boardList"])
+    location.href ="http://localhost:4200/boardList?authority0=%5Bobject%20Object%5D&authority1=%5Bobject%20Object%5D&authority=2"
   }
 
   gotostatistics() : void{

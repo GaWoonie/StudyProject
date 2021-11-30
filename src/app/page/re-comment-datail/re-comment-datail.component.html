@@ -39,22 +39,5 @@
 </div>
 
 <div class="detailbutton">
-  <input type=button value="답글" (click)="writeReply(postIdx,group_Depth)">
   <input type=button value="취소" onClick="history.go(-1)">
 </div>
-
-
-<form style="float: left; width: 70%">
-  <table class ="type01" style="background-color: white">
-    <tbody>
-      <tr  class="List" (click)="godetail(item.idx)"  *ngFor="let item of boardList" style="border-bottom: 1px solid; text-align: center; background-color: white">
-        <ng-container *ngIf="item.group_depth==2">
-          <ng-container *ngIf="postIdx == item.group_idx">
-          <td colspan="3"> <input type="button" value="Re:Re" class="comment3">   {{item.title}} [작성자 : {{item.writer}}]</td>
-        </ng-container>
-        </ng-container>
-      </tr>
-      </tbody>
-    </table>
-</form>
-
