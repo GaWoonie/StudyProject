@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs";
 import {BoardService} from "../../service/board.service";
 import {Add_Comment, Board, Comments} from "../../model/board";
-import {ActivatedRoute, Router} from '@angular/router'
+import {ActivatedRoute, NavigationExtras, Router} from '@angular/router'
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ListQuery} from "../../service/list-query";
+import {UserService} from "../../service/user.service";
+import {User} from "../../model/user";
 
 
 
@@ -34,12 +36,19 @@ export class BoardDetailComponent implements OnInit {
   ReplyCommentForm : FormGroup;
   replybutton: boolean |undefined = false;
   parentidx : number =0 ;
-
   clicked_idx : number = 0;
+  deleteButton : boolean |undefined = false;
+  modify_enabled: boolean |undefined;
+  delete_enabled: boolean |undefined;
+  group_Depth : number;
 
-
-  constructor(private activatedRoute : ActivatedRoute, private router:Router, boardService:BoardService,private fb:FormBuilder) {
+  constructor(
+    private activatedRoute : ActivatedRoute,
+    private router:Router,
+    boardService:BoardService,
+    private fb:FormBuilder,) {
     this.postIdx = this.activatedRoute.snapshot.params["idx"]
+    this.group_Depth = this.activatedRoute.snapshot.params["group_depth"]
     this.boardService = boardService;
     this.CommentForm = this.fb.group({
       parentIdx : new FormControl('',[Validators.required]),
@@ -62,13 +71,17 @@ export class BoardDetailComponent implements OnInit {
   ngOnInit(): void {
     this.boardService.getBoard(this.postIdx).subscribe(data => {
 
-      console.log("테스트 확인 타이틀 : "+data.idx)
+      console.log("테스트 확인 수정가능 : "+data.modify_enabled)
 
       this.title = data.title;
       this.board = data;
       this.content = data.content;
       this.writer = data.writer;
       this.writeDate = data.writeDate;
+      this.modify_enabled = data.modify_enabled;
+      this.delete_enabled = data.delete_enabled;
+      this.group_Depth = data.group_depth;
+      console.log("조회한 게시글의 group_depth :" + data.group_depth)
     });
 
     this.boardService.getComment(this.postIdx).subscribe(data=>{
@@ -79,7 +92,9 @@ export class BoardDetailComponent implements OnInit {
       this.parentidx = data.parentIdx;
            console.log("parentidx 번호 : " + data.depth)
     })
+
   }
+
 
 
   remove(): void{
@@ -136,9 +151,16 @@ export class BoardDetailComponent implements OnInit {
     console.log("patentidx 확인 :" + parentidx)
   }
 
-  gotocomment(idx : number) :void{
+  gotocomment(idx : number, group_depth : number) :void{
     this.postIdx = idx
-    this.router.navigate(['write/comment/',idx])
+    let extras : NavigationExtras = {
+      queryParams: {
+        "idx" : idx,
+        "group_depth" : group_depth
+      }
+    }
+    console.log("그룹 뎁쓰 : "+group_depth)
+    this.router.navigate(['write/comment/',idx],extras)
   }
 }
 

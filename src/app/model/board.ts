@@ -11,6 +11,8 @@ export interface Board {
   group_idx : number;
   group_depth : number;
   group_order : number;
+  modify_enabled : boolean;
+  delete_enabled : boolean;
   reply : string;
 }
 
@@ -50,6 +52,12 @@ export interface Add_Comment {
 export interface ListByDate {
   count : number;
   boardList : Board[];
+  staticsList : staticsList[];
 }
 
+export interface staticsList {
+  hour : number;
+  count : number;
+  day : number;
+}
 

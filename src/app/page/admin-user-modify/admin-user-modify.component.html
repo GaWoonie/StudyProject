@@ -16,6 +16,10 @@
 <div class="body" [formGroup]="fg_Modify">
   <table class ="type01" id="boardtable">
     <tr>
+      <th> Confirm </th>
+      <td colspan="2" >{{confirmAdmin}} </td>
+    </tr>
+    <tr>
       <th> NO </th>
       <td colspan="2" >{{Idx}} </td>
     </tr>
@@ -46,6 +50,12 @@
   <input type="button" class="complition"  value="취소" (click)="adminUser()">
   &nbsp;
   <input type="button" class="out"  value="탈퇴" (click)="deleteUser()" >
+  <ng-container *ngIf="this.delogateAdmin">
+  <input type="button" value="권한" (click)="delegate()">
+  </ng-container>
+  <ng-container *ngIf="this.revokeAdmin">
+  <input type="button" value="권한해제" (click)="revoke()">
+  </ng-container>
 </div>
 
 

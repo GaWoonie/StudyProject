@@ -114,4 +114,5 @@ export class AdminBoardListComponent implements OnInit {
   gotostatistics() : void{
     this.router.navigate(['statistics'])
   }
-}
+
+ }

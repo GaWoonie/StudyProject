@@ -47,7 +47,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr  (click)="godetail(item.idx, item.group_idx)"  *ngFor="let item of boardList">
+    <tr  (click)="godetail(item.idx, item.group_idx, item.group_depth)"  *ngFor="let item of boardList">
       <ng-container *ngIf="item.group_depth==0">
         <ng-container *ngIf="item.idx == item.group_idx">
       <td>{{item.num}}</td>
@@ -59,7 +59,7 @@
        <!--아래부터 답변글 표시하는 형식-->
       <ng-container *ngIf="item.group_depth==1">
           <td>{{item.num}}</td>
-          <td colspan="2"> <input type="button" value="Re" class="comment2">   {{item.title}}</td>
+          <td colspan="2"> <input type="button" value="Re" class="comment2">   {{item.title}}&nbsp;&nbsp;&nbsp;[{{item.writer}}]</td>
           <td>{{item.hit}}</td>
       </ng-container>
  <!--     <ng-container *ngIf="item.group_depth==2">
@@ -68,27 +68,6 @@
           <td>{{item.hit}}</td>
       </ng-container>-->
     </tr>
-
-
- <!--   <tr *ngFor="let item of boardList">
-      <ng-container *ngIf="item.group_depth==1">
-        <ng-container *ngIf="item.group_idx== item.group_idx">
-        <td>{{item.idx}}//{{item.group_idx}}</td>
-        <td colspan="2"> <input type="button" value="Re" class="comment2">   {{item.title}}</td>
-        <td>{{item.writer}}</td>
-      </ng-container>
-      </ng-container>
-    </tr>-->
-
-
-   <!-- <ng-container *ngIf="boardList.group_depth == 1">
-      <tr  (click)="godetail(item.idx,item.hit)"  *ngFor="let item of boardList">
-        <td>답변글{{item.idx}}</td>
-        <td>답변글{{item.title}}</td>
-        <td>답변글{{item.writer}}</td>
-        <td>답변글{{item.hit}}</td>
-      </tr>
-    </ng-container>-->
     </tbody>
   </table>
 </div>

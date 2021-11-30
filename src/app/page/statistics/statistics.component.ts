@@ -1,16 +1,17 @@
 import {Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, FormsModule, Validators} from '@angular/forms';
-import {Chart} from 'chart.js';
+import {Chart, registerables, LineController, LineElement, PointElement, LinearScale, Title,CategoryScale} from 'chart.js';
 import {DateQuery, ListQuery} from "../../service/list-query";
 import {BoardService} from "../../service/board.service";
-
+Chart.register(...registerables);
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.scss']
 })
 export class StatisticsComponent implements OnInit {
+
   boardList: any = [];
 
   clickDate : boolean |undefined = false;
@@ -27,9 +28,13 @@ export class StatisticsComponent implements OnInit {
   click_day : boolean |undefined =false;
   click_week : boolean |undefined =false;
   click_month : boolean |undefined =false;
+  count : number | undefined;
+  ctx : any;
+  mychart : Chart |undefined;
 
 
   constructor(  private router: Router,  private fb: FormBuilder, private boardService: BoardService,) {
+
   /*this.Date = this.fb.group({
     date : new FormControl('',[Validators.required])
   })
@@ -58,21 +63,62 @@ export class StatisticsComponent implements OnInit {
       year : new FormControl('',[Validators.required]),
       month : new FormControl('',[Validators.required]),
     })
+
+
+
+
+
   }
+
+
 
 
   ngOnInit(): void {
+    this.chart()
   }
- /* const query: ListQuery = {
-    search_option: this.fgSearch.value.search_option,
-    search_word: this.fgSearch.value.search_word,
-    sort_option: 'group_hit',
-    sorting: this.fgHit.value.order,
-  };
 
-  this.boardService.getList(query).subscribe(data => {
-  this.boardList = data.items;
-});*/
+  chart() : void {
+    const ctx = document.getElementById('myChart');
+    // @ts-ignore
+    const mychart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],  //x축
+        datasets: [{
+          label: '# of Count',
+          data: [12, 19, 3, 5, 2, 3],   //y축
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 0.5
+        }]
+      },
+      options: {
+        responsive : false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+  //차트 만들기
+
+
 
   private reloadByDay() {
     // @ts-ignore
@@ -82,6 +128,7 @@ export class StatisticsComponent implements OnInit {
     }
     this.boardService.getBoardByDate(query).subscribe(data=>{
       this.boardList = data.boardList;
+      this.count = data.count;
     })
   }
 
@@ -94,6 +141,7 @@ export class StatisticsComponent implements OnInit {
     }
     this.boardService.getBoardByDate(query).subscribe(data=>{
       this.boardList = data.boardList;
+      this.count = data.count;
     })
   }
 
@@ -106,6 +154,7 @@ export class StatisticsComponent implements OnInit {
     }
     this.boardService.getBoardByDate(query).subscribe(data=>{
       this.boardList = data.boardList;
+      this.count = data.count;
     })
   }
 
@@ -189,4 +238,8 @@ export class StatisticsComponent implements OnInit {
   userBoard() : void {
     this.router.navigate(['boardList'])
   }
+
+
+
+
 }

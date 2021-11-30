@@ -37,7 +37,6 @@ export class BoardListComponent implements OnInit {
   fgIdx :FormGroup;
 
 
-
   flag_search = false;
 
   // 게시글 받을 배열
@@ -54,7 +53,6 @@ export class BoardListComponent implements OnInit {
     private route: ActivatedRoute,
     userService:UserService,
     private fb:FormBuilder) {
-
     this.userService = userService
     this.fgSearch =fb.group({
       search_option :new FormControl('writer,title,content',[Validators.required]),
@@ -97,7 +95,6 @@ export class BoardListComponent implements OnInit {
       search_word: queryParams.search_word
     })
     this.reload();
-
   }
 
   private reload() {
@@ -127,16 +124,24 @@ export class BoardListComponent implements OnInit {
   //option,word 적용하여 페이지 reload.
 
 
-  godetail(idx: number, group_idx: number): void {
+  godetail(idx: number, group_idx: number, group_depth : number): void {
     if(idx == group_idx){
-      console.log(idx +"그룹:" +group_idx)
       console.log("클릭한 행의 idx : " + idx)
-    this.router.navigate(["boardList/", idx])
-    } else {
-      console.log ("클릭한 행의 idx :" +idx)
+      console.log("클릭한 행의 group_depth : " + group_depth)
       let extras : NavigationExtras = {
         queryParams: {
-          "idx" : idx
+          "idx" : idx,
+          "group_depth" : group_depth
+        }
+      }
+    this.router.navigate(["boardList/", idx],extras)
+    } else {
+      console.log ("클릭한 행의 idx :" +idx)
+      console.log("클릭한 행의 group_depth : " + group_depth)
+      let extras : NavigationExtras = {
+        queryParams: {
+          "idx" : idx,
+          "group_depth" : group_depth
         }
       }
       this.router.navigate(["comment/",idx],extras)

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../service/user.service";
 import {User} from "../../model/user";
 
@@ -12,7 +12,7 @@ export class AdminUserListComponent implements OnInit {
 
     userList : any =[];
 
-  constructor(private router: Router, private userService:UserService,) {
+  constructor(private router: Router, private userService:UserService) {
 
   }
 
@@ -23,7 +23,6 @@ export class AdminUserListComponent implements OnInit {
   getalluser() :void{
     this.userService.All_User().subscribe(data=>{
       this.userList = data
-
     })
   }
   adminBoard() : void{
@@ -37,4 +36,6 @@ export class AdminUserListComponent implements OnInit {
   userboard() :void{
     this.router.navigate(["/boardList"])
   }
+
+
 }

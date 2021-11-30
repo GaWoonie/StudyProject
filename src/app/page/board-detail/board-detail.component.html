@@ -43,12 +43,13 @@
 </div>
 
 <div class="detailbutton">
-  <button type=button (click)="gotocomment(postIdx)"> 답글</button>
-  &nbsp;
+  <button type=button (click)="gotocomment(postIdx,group_Depth)"> 답글</button>
   <button type=button (click)="gotolist()" >확인</button>
+  <ng-container *ngIf="this.modify_enabled == true">
   <button type=button (click)="gotoModify(postIdx)" >수정</button>
     <!--postIdx값에 따라, 게시글 수정 페이지로 이동-->
   <button type=button title="삭제" (click)="remove()" >삭제</button>
+  </ng-container>
 </div>
 <br>
 <br>

@@ -13,7 +13,7 @@
     <span>
      <input type="radio" name="calender" (click)="Click_day()"> 일간
      <input type="radio" name="calender" (click)="Click_week()"> 주간
-     <input type="radio" name="calender" (click)="Click_month()"> 월간
+     <input type="radio" name="calender" (click)="Click_month()" > 월간
     </span>
     <br>
     <br>
@@ -44,6 +44,12 @@
     </form>
   </div>
 
+
+  <script src="node_modules/chart.js"></script>
+  <canvas id="myChart" style="height:30vh; width:50vw"> </canvas>
+
+
+  <p> Count : {{count}}</p>
   <div>
   <table class ="type01" id="boardtable">
     <thead>

@@ -28,16 +28,20 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (err.error.message != 'login_failed') {
           // 로그인 실패가 아니라면, 즉, 인증없이 URL 이동했다면 리다이렉트 처리
           this.redirect()
-          alert("로그인 없이 url 이동")
+          /*alert("로그인 없이 url 이동")*/
         }
       }
       if (err.status ==403){
         alert("이용 권한이 없습니다.")
+        history.back()
       }
 
       if (err.status ==500){
         alert("Server Error!")
       }
+
+
+
       return throwError(err);
     }));
   }

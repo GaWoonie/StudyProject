@@ -21,6 +21,11 @@ export class AdminUserModifyComponent implements OnInit {
   Idx :number |undefined;
   id : string |undefined;
   doubleCheck : boolean | undefined = false
+  // @ts-ignore
+  confirm : boolean |undefined;
+  confirmAdmin : string | undefined;
+  delogateAdmin : boolean |undefined = false;
+  revokeAdmin : boolean |undefined = false;
 
   constructor(private router:Router, private fb:FormBuilder,userService:UserService,private activatedRoute: ActivatedRoute) {
     this.Idx = this.activatedRoute.snapshot.params["idx"]
@@ -42,7 +47,18 @@ export class AdminUserModifyComponent implements OnInit {
       this.password = data.password;
       this.name = data.name;
     })
-
+    // @ts-ignore
+    this.userService.Confirm_Admin(this.Idx).subscribe(data=>{
+      // @ts-ignore
+      this.confirm = data;
+      if(this.confirm == true){
+        this.confirmAdmin = "Admin";
+        this.revokeAdmin = true;
+      } else {
+        this.confirmAdmin = "User";
+        this.delogateAdmin = true;
+      }
+    })
   }
   //this.modifyform.value.idx = this.postIdx
   //     // form contorl 의 입력된 { 제목, 내용 } 에 + 게시글의 idx 값도 추가한다.
@@ -61,18 +77,11 @@ export class AdminUserModifyComponent implements OnInit {
     this.user.id = this.fg_Modify.value.id
     this.userService.Modify_User(this.fg_Modify.value).subscribe(data=>{
       console.log("정상출력:" + this.fg_Modify.value.password)
-     /* this.adminUser()*/
+      this.adminUser()
     })} else {
     alert("중복확인이 필요합니다.")
     }
-
-   /* // @ts-ignore
-    this.userService.Modify_User(this.Idx).subscribe(data=>{
-      this.id = data.id;
-      this.pw = data.pw;
-      this.name = data.name;
-    })*/
-      }
+  }
 
 
   check_name(event : MouseEvent): void{
@@ -106,9 +115,25 @@ export class AdminUserModifyComponent implements OnInit {
       alert("회원 정보가 삭제되었습니다.")
       this.adminUser()
     })
-
-
   }
+  delegate() : void {
+    // @ts-ignore
+    this.userService.Delegate_Admin(this.Idx).subscribe(date=>{
+      console.log("회원 idx" + this.Idx)
+      alert("관리자 권한을 부여합니다.")
+      history.back()
+    })
+  }
+
+  revoke() : void {
+    // @ts-ignore
+    this.userService.Revoke_Admin(this.Idx).subscribe(data=>{
+      alert("관리자 권한을 삭제합니다.")
+      history.back()
+    })
+  }
+
+
 }
 
 

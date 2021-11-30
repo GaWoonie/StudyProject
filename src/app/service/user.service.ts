@@ -21,48 +21,72 @@ const httpOptions = {
 export class UserService {
   user: User | undefined;
 
-  constructor(private httpClient : HttpClient) { }
-
-  SignUP(user:User): Observable<any>{
-    return this.httpClient.post('api/api/back/user/insertUser',user)
+  constructor(private httpClient: HttpClient) {
   }
 
-  LogIn(login:Login): Observable<any>{
-    return this.httpClient.post<any>('api/api/back/user/login',login)
+  SignUP(user: User): Observable<any> {
+    return this.httpClient.post('api/api/back/user/insertUser', user)
   }
 
-  LogOut(): Observable<any>{
+  LogIn(login: Login): Observable<any> {
+    return this.httpClient.post<any>('api/api/back/user/login', login)
+  }
+
+  LogOut(): Observable<any> {
     return this.httpClient.get('api/api/back/user/logout')
   }
 
-  Check_ID(id:string): Observable<any>{
-    return this.httpClient.get('api/api/back/user/existsId?id='+id)
+  Check_ID(id: string): Observable<any> {
+    return this.httpClient.get('api/api/back/user/existsId?id=' + id)
   }
+
   //아이디 중복확인
-  Check_Name(name:string): Observable<any>{
-    return this.httpClient.get('api/api/back/user/existsName?name='+name)
+  Check_Name(name: string): Observable<any> {
+    return this.httpClient.get('api/api/back/user/existsName?name=' + name)
   }
+
   //이름 중복확인
 
-  All_User() : Observable<User>{
+  All_User(): Observable<User> {
     return this.httpClient.get<User>('api/api/back/user/selectUserList')
   }
+
   //모든 유저 정보 조회
 
-  Select_User(idx:number) : Observable<User>{
-    return this.httpClient.get<User>('api/api/back/user/selectUser?idx='+idx)
+  Select_User(idx: number): Observable<User> {
+    return this.httpClient.get<User>('api/api/back/user/selectUser?idx=' + idx)
   }
+
   //유저 정보 조회
 
-  Modify_User(user: User) : Observable<User>{
-    console.log("user 네임 : "+user.name)
+  Modify_User(user: User): Observable<User> {
+    console.log("user 네임 : " + user.name)
     console.log(" 비밀번호 : " + user.password)
     return this.httpClient.put<User>('api/api/back/user/updateUser', user)
   }
+
   //유저 정보 (id,pw,name) 수정. idx값으로 유저 정보 조회
 
-  Delete_User(idx:number) : Observable<User>{
+  Delete_User(idx: number): Observable<User> {
     // @ts-ignore
-    return this.httpClient.put('api/api/back/user/deleteUser?idx=' + idx,'')
+    return this.httpClient.put('api/api/back/user/deleteUser?idx=' + idx, '')
   }
+
+  Delegate_Admin(idx: number): Observable<User> {
+    // @ts-ignore
+    return this.httpClient.put('api/api/back/user/delegateADMIN?idx=' + idx, '')
+  }
+
+  //관리자 권한 부여
+
+  Revoke_Admin(idx: number): Observable<User> {
+    // @ts-ignore
+    return this.httpClient.put('api/api/back/user/revoke_ADMIN?idx=' + idx, '')
+  }
+  //관리자 권한 삭제
+
+  Confirm_Admin(idx: number): Observable<User> {
+    return this.httpClient.get<User>('api/api/back/user/is_ADMIN?idx=' + idx)
+  }
+
 }
