@@ -109,7 +109,7 @@ export class BoardDetailComponent implements OnInit {
 
 
   gotolist(): void {
-    this.router.navigate(["boardList"])
+    history.back()
   }
 
   gotoModify(idx: number): void {

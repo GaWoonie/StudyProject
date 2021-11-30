@@ -39,19 +39,15 @@ export class LoginComponent implements OnInit {
 
     this.userService.LogIn(this.login).subscribe(data=>{
       this.authority = data.authorities.length
-      this.authority0 = data.authorities[0]
-      this.authority1 = data.authorities[1]
-      console.log("권한확인",this.authority0)
-        console.log("권한확인",this.authority1)
       console.log("권한확인 배열길이",this.authority)
         let extras : NavigationExtras = {
           queryParams: {
-            "authority0": this.authority0,
-            "authority1" : this.authority1,
             "authority" : this.authority
           }
         }
-        this.route.navigate(['/boardList'],extras);
+        localStorage.setItem("userVo", JSON.stringify(this.login));
+        localStorage.setItem("Authority",JSON.stringify(this.authority))
+        this.route.navigate(['/boardList'], extras);
         alert("Welcome!")
       console.log(extras)
       },

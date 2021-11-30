@@ -11,8 +11,13 @@ import {User} from "../../model/user";
 export class AdminUserListComponent implements OnInit {
 
     userList : any =[];
-
+    Authority : any;
   constructor(private router: Router, private userService:UserService) {
+   /* this.Authority = localStorage.getItem("Authority")
+    if(this.Authority == 1){
+      alert("관리자 권한이 없습니다.")
+      this.router.navigate(['boardList'])
+    }*/
   }
 
   ngOnInit(): void {
@@ -33,7 +38,7 @@ export class AdminUserListComponent implements OnInit {
   }
 
   userboard() :void{
-    this.router.navigate(["/boardList"])
+    location.href ="http://localhost:4200/boardList?authority0=%5Bobject%20Object%5D&authority1=%5Bobject%20Object%5D&authority=2"
   }
 
 

@@ -37,8 +37,6 @@ export class BoardListComponent implements OnInit {
   fgIdx :FormGroup;
   confirm : boolean |undefined;
   Authority : string;
-  Authority0 : string;
-  Authority1 : string;
   confirmUser : boolean |undefined = false;
 
   flag_search = false;
@@ -58,10 +56,6 @@ export class BoardListComponent implements OnInit {
     userService:UserService,
     private fb:FormBuilder) {
     this.userService = userService;
-    // @ts-ignore
-    this.Authority0 = this.route.snapshot.queryParamMap.get("authority0")
-    // @ts-ignore
-    this.Authority1 = this.route.snapshot.queryParamMap.get("authority1")
     // @ts-ignore
     this.Authority = this.route.snapshot.queryParamMap.get("authority")
     console.log(this.Authority)
@@ -125,6 +119,8 @@ export class BoardListComponent implements OnInit {
 
   confirmAdmin() : void {
     // @ts-ignore
+
+    console.log("this.Authority : "+this.Authority)
     if(this.Authority == "2"){
       this.confirmUser = true
     } else{
@@ -181,8 +177,9 @@ export class BoardListComponent implements OnInit {
   //내림차순 정렬
 
   logout(): void{
-    this.userService.LogOut().subscribe(data =>
-      this.router.navigate([''])
+    this.userService.LogOut().subscribe(data =>{
+      localStorage.clear()
+      this.router.navigate([''])}
     )
   }
   //로그아웃시킴

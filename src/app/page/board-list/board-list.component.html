@@ -21,7 +21,7 @@
   </select>
   &nbsp;
   <input type="text" class="search" placeholder="Search" formControlName="search_word">
-  <input type="button" class="search-button" value="검색" (click)="searchboard(fc_search_option,fc_search_word)">
+  <!--<input type="button" class="search-button" value="검색" (click)="searchboard(fc_search_option,fc_search_word)">-->
 </div>
 
 
@@ -50,7 +50,7 @@
     <tr  class="List" (click)="godetail(item.idx, item.group_idx, item.group_depth)"  *ngFor="let item of boardList">
       <ng-container *ngIf="item.group_depth==0">
         <ng-container *ngIf="item.idx == item.group_idx">
-      <td>{{item.num}}</td>
+      <td>{{item.num}}[{{item.idx}}]</td>
       <td>{{item.title}}</td>
       <td>{{item.writer}}</td>
       <td>{{item.hit}}</td>
@@ -62,11 +62,11 @@
           <td colspan="2"> <input type="button" value="Re" class="comment2">   {{item.title}}&nbsp;&nbsp;&nbsp;[{{item.writer}}]</td>
           <td>{{item.hit}}</td>
       </ng-container>
-      <ng-container *ngIf="item.group_depth==2">
-          <td> group_idx : {{item.group_idx}}</td>
-          <td colspan="2"> <input type="button" value="Re:Re" class="comment3">   {{item.title}}</td>
+      <!--<ng-container *ngIf="item.group_depth==2">
+          <td> {{item.num}}</td>
+          <td colspan="2"> <input type="button" value="Re:Re" class="comment3"> {{item.title}}&nbsp;&nbsp;&nbsp;[{{item.writer}}]</td>
           <td>{{item.hit}}</td>
-      </ng-container>
+      </ng-container>-->
     </tr>
     </tbody>
   </table>

@@ -236,7 +236,7 @@ export class StatisticsComponent implements OnInit {
     this.router.navigate(['admin/boardList'])
   }
   userBoard() : void {
-    this.router.navigate(['boardList'])
+    location.href="http://localhost:4200/boardList?authority=2"
   }
 
 

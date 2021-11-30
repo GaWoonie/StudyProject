@@ -46,15 +46,12 @@ export class BoardCreateComponent implements OnInit {
   submit() : void {
     this.boardService.createBoard(this.createform.value).subscribe(data => {
       console.log("정상출력:" + this.createform)
-      this.reload()
+      history.back()
       })
     //입력된 title, content, writer 데이터를 api 에 update 요청.
   }
 
-  reload() : void{
-    this.router.navigate(['/boardList'])
-  }
-//완료 버튼 누르면 리스트화면으로 reload됨.
+
 
 
   buttonclick() {

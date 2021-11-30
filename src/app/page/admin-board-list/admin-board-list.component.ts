@@ -27,6 +27,7 @@ export class AdminBoardListComponent implements OnInit {
   fc_hit_up: any;
   fc_hit_down: any;
   postIdx: number;
+  Authority : any;
 
   constructor(private boardService: BoardService,
               private router: Router,
@@ -34,6 +35,12 @@ export class AdminBoardListComponent implements OnInit {
               userService: UserService,
               private fb: FormBuilder,
               private activatedRoute: ActivatedRoute) {
+  /*  this.Authority = localStorage.getItem("Authority")
+    if(this.Authority == 1){
+      alert("관리자 권한이 없습니다.")
+      this.router.navigate([''])
+    }
+*/
     this.userService = userService;
     this.boardService = boardService;
     this.postIdx = this.activatedRoute.snapshot.params["idx"]
@@ -57,6 +64,7 @@ export class AdminBoardListComponent implements OnInit {
       this.fc_hit_down = data.order;
       this.reload();
     })
+
   }
 
   ngOnInit(): void {
