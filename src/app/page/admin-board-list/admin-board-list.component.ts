@@ -35,12 +35,11 @@ export class AdminBoardListComponent implements OnInit {
               userService: UserService,
               private fb: FormBuilder,
               private activatedRoute: ActivatedRoute) {
-  /*  this.Authority = localStorage.getItem("Authority")
+    this.Authority = localStorage.getItem("Authority")
     if(this.Authority == 1){
       alert("관리자 권한이 없습니다.")
-      this.router.navigate([''])
+      history.back()
     }
-*/
     this.userService = userService;
     this.boardService = boardService;
     this.postIdx = this.activatedRoute.snapshot.params["idx"]

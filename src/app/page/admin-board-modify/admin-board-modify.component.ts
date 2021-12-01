@@ -19,8 +19,16 @@ export class AdminBoardModifyComponent implements OnInit {
   title: string | undefined;
   writer: string | undefined;
   writeDate: string | undefined;
+  Authority : any;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, boardService: BoardService, private fb: FormBuilder) {
+    this.Authority = localStorage.getItem("Authority")
+    if(this.Authority == 1){
+      alert("관리자 권한이 없습니다.")
+      this.router.navigate(['boardList'])
+    }
+    // 관리자 권한이 있는지 없는지 확인하는 방법
+
     this.postIdx = this.activatedRoute.snapshot.params["idx"]
     this.boardService = boardService;
     this.modifyform = this.fb.group({
